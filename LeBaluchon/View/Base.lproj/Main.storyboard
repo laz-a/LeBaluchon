@@ -62,7 +62,7 @@
         <!--Weather-->
         <scene sceneID="FO7-KA-97t">
             <objects>
-                <viewController id="lvF-1s-EjR" customClass="WeatherViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lvF-1s-EjR" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XUW-pv-OMM">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

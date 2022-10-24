@@ -16,6 +16,8 @@
 		6F18C2172906D27900969459 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C2162906D27900969459 /* CurrencyViewController.swift */; };
 		6F18C2192906D29500969459 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C2182906D29500969459 /* TranslateViewController.swift */; };
 		6F18C21B2906D2B200969459 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C21A2906D2B200969459 /* WeatherViewController.swift */; };
+		6F18C21F2906D3AA00969459 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C21E2906D3AA00969459 /* CurrencyService.swift */; };
+		6F18C2222906D41A00969459 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C2212906D41A00969459 /* ApiKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,8 @@
 		6F18C2162906D27900969459 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
 		6F18C2182906D29500969459 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		6F18C21A2906D2B200969459 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		6F18C21E2906D3AA00969459 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
+		6F18C2212906D41A00969459 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 		6F18C1D72906D02200969459 = {
 			isa = PBXGroup;
 			children = (
+				6F18C2202906D3C000969459 /* Secrets */,
 				6F18C1E22906D02200969459 /* LeBaluchon */,
 				6F18C1F92906D02400969459 /* LeBaluchonTests */,
 				6F18C1E12906D02200969459 /* Products */,
@@ -88,6 +93,7 @@
 				6F18C2152906D04400969459 /* Model */,
 				6F18C2142906D03E00969459 /* View */,
 				6F18C2132906D02D00969459 /* Controller */,
+				6F18C21D2906D38400969459 /* Service */,
 			);
 			path = LeBaluchon;
 			sourceTree = "<group>";
@@ -125,6 +131,22 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6F18C21D2906D38400969459 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6F18C21E2906D3AA00969459 /* CurrencyService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		6F18C2202906D3C000969459 /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				6F18C2212906D41A00969459 /* ApiKey.swift */,
+			);
+			path = Secrets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,7 +252,9 @@
 			files = (
 				6F18C1E42906D02200969459 /* AppDelegate.swift in Sources */,
 				6F18C21B2906D2B200969459 /* WeatherViewController.swift in Sources */,
+				6F18C21F2906D3AA00969459 /* CurrencyService.swift in Sources */,
 				6F18C2192906D29500969459 /* TranslateViewController.swift in Sources */,
+				6F18C2222906D41A00969459 /* ApiKey.swift in Sources */,
 				6F18C2172906D27900969459 /* CurrencyViewController.swift in Sources */,
 				6F18C1E62906D02200969459 /* SceneDelegate.swift in Sources */,
 			);
