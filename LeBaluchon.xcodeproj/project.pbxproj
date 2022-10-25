@@ -12,7 +12,6 @@
 		6F18C1EB2906D02200969459 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F18C1E92906D02200969459 /* Main.storyboard */; };
 		6F18C1ED2906D02400969459 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F18C1EC2906D02400969459 /* Assets.xcassets */; };
 		6F18C1F02906D02400969459 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F18C1EE2906D02400969459 /* LaunchScreen.storyboard */; };
-		6F18C1FB2906D02400969459 /* LeBaluchonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C1FA2906D02400969459 /* LeBaluchonTests.swift */; };
 		6F18C2172906D27900969459 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C2162906D27900969459 /* CurrencyViewController.swift */; };
 		6F18C2192906D29500969459 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C2182906D29500969459 /* TranslateViewController.swift */; };
 		6F18C21B2906D2B200969459 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C21A2906D2B200969459 /* WeatherViewController.swift */; };
@@ -20,6 +19,9 @@
 		6F18C2222906D41A00969459 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C2212906D41A00969459 /* ApiKey.swift */; };
 		6F18C2242906D48000969459 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C2232906D48000969459 /* Currency.swift */; };
 		6F18C2262906D4BD00969459 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C2252906D4BD00969459 /* CurrencyModel.swift */; };
+		6F740A462907204400F89AD2 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F740A452907204400F89AD2 /* MockURLProtocol.swift */; };
+		6F740A482907206500F89AD2 /* ResponseDataFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F740A472907206500F89AD2 /* ResponseDataFake.swift */; };
+		6F740A4A290722B700F89AD2 /* CurrencyTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F740A49290722B700F89AD2 /* CurrencyTestCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +43,6 @@
 		6F18C1EF2906D02400969459 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F18C1F12906D02400969459 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F18C1F62906D02400969459 /* LeBaluchonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeBaluchonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F18C1FA2906D02400969459 /* LeBaluchonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonTests.swift; sourceTree = "<group>"; };
 		6F18C2162906D27900969459 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
 		6F18C2182906D29500969459 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		6F18C21A2906D2B200969459 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +50,9 @@
 		6F18C2212906D41A00969459 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		6F18C2232906D48000969459 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		6F18C2252906D4BD00969459 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
+		6F740A452907204400F89AD2 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		6F740A472907206500F89AD2 /* ResponseDataFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDataFake.swift; sourceTree = "<group>"; };
+		6F740A49290722B700F89AD2 /* CurrencyTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTestCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +109,9 @@
 		6F18C1F92906D02400969459 /* LeBaluchonTests */ = {
 			isa = PBXGroup;
 			children = (
-				6F18C1FA2906D02400969459 /* LeBaluchonTests.swift */,
+				6F740A49290722B700F89AD2 /* CurrencyTestCase.swift */,
+				6F740A452907204400F89AD2 /* MockURLProtocol.swift */,
+				6F740A472907206500F89AD2 /* ResponseDataFake.swift */,
 			);
 			path = LeBaluchonTests;
 			sourceTree = "<group>";
@@ -272,7 +278,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F18C1FB2906D02400969459 /* LeBaluchonTests.swift in Sources */,
+				6F740A4A290722B700F89AD2 /* CurrencyTestCase.swift in Sources */,
+				6F740A462907204400F89AD2 /* MockURLProtocol.swift in Sources */,
+				6F740A482907206500F89AD2 /* ResponseDataFake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

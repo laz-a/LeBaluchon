@@ -12,8 +12,9 @@ class CurrencyService {
     private init() {}
 
     private static let apiKey = ApiKey.fixer
+    
     private static var from = "EUR"
-    private static var to = "AUD"
+    private static var to = "USD"
 
     private static let urlSymbols = URL(string: "https://api.apilayer.com/fixer/symbols")!
     private static var urlConversion: URL {
@@ -41,6 +42,10 @@ class CurrencyService {
         case data
         case response
         case decode
+    }
+    
+    init(session: URLSession) {
+        self.session = session
     }
 
     func getAvailableCurrencies(callback: @escaping(() throws -> [String: String]) -> Void) {
