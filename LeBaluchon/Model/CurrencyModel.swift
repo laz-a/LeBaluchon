@@ -24,7 +24,7 @@ class CurrencyModel {
         currencyService = CurrencyService(session: session)
     }
     
-    func getSymbols(completionHandler: @escaping(() throws -> ()) -> ()) {
+    func getSymbols(completionHandler: @escaping(() throws -> ()) -> Void) {
         currencyService.getAvailableCurrencies { symbols in
             do {
                 self.symbols = try symbols()

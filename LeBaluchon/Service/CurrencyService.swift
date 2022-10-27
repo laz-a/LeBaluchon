@@ -52,12 +52,12 @@ class CurrencyService {
         task?.cancel()
         task = session.dataTask(with: requestSymbols) { data, response, error in
             DispatchQueue.main.async {
-                guard let data = data, error == nil else {
-                    callback({ throw AsyncError.data })
-                    return
-                }
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                     callback({ throw AsyncError.response })
+                    return
+                }
+                guard let data = data, !data.isEmpty, error == nil else {
+                    callback({ throw AsyncError.data })
                     return
                 }
                 guard let symbols = try? JSONDecoder().decode(CurrencySymbols.self, from: data) else {
