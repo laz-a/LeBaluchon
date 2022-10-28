@@ -48,7 +48,7 @@ class CurrencyService {
         self.session = session
     }
 
-    func getAvailableCurrencies(callback: @escaping(() throws -> [String: String]) -> Void) {
+    func getAvailableCurrencies(callback: @escaping(() throws -> [CurrencySymbols.Symbol]) -> Void) {
         task?.cancel()
         task = session.dataTask(with: requestSymbols) { data, response, error in
             DispatchQueue.main.async {
@@ -79,29 +79,31 @@ class CurrencyService {
         
         task?.cancel()
         task = session.dataTask(with: requestConvert) { data, response, error in
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                callback({ throw AsyncError.response })
-                return
+            DispatchQueue.main.async {
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    callback({ throw AsyncError.response })
+                    return
+                }
+                guard let data = data, !data.isEmpty, error == nil else {
+                    callback({ throw AsyncError.data })
+                    return
+                }
+                guard let conversionRate = try? JSONDecoder().decode(ConversionRate.self, from: data) else {
+                    print(response.statusCode)
+                    callback({ throw AsyncError.decode })
+                    return
+                }
+                
+                
+                //guard let conversionError = try? JSONDecoder().decode(CurrencyError.self, from: data) else {
+                //                print(response.statusCode)
+                //                print("guard let conversionError = try? JSONDecoder().decode(ConversionError.self, from: data) else")
+                //                callback({ throw AsyncError.json })
+                //                return
+                //}
+                
+                callback({ return conversionRate })
             }
-            guard let data = data, !data.isEmpty, error == nil else {
-                callback({ throw AsyncError.data })
-                return
-            }
-            guard let conversionRate = try? JSONDecoder().decode(ConversionRate.self, from: data) else {
-                print(response.statusCode)
-                callback({ throw AsyncError.decode })
-                return
-            }
-            
-            
-//guard let conversionError = try? JSONDecoder().decode(CurrencyError.self, from: data) else {
-//                print(response.statusCode)
-//                print("guard let conversionError = try? JSONDecoder().decode(ConversionError.self, from: data) else")
-//                callback({ throw AsyncError.json })
-//                return
-//}
-
-            callback({ return conversionRate })
         }
         task?.resume()
     }

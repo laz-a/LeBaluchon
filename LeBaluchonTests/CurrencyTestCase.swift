@@ -10,9 +10,9 @@ import XCTest
 
 final class CurrencyTestCase: XCTestCase {
     
-//    private func getUrlSession(mock: MockURLProtocol) -> URLSession {
+//    private func getUrlSession<T>(mock: T) -> URLSession {
 //        let configuration = URLSessionConfiguration.ephemeral
-//        configuration.protocolClasses = [mock.self]
+//        configuration.protocolClasses = [T]
 //        return URLSession(configuration: configuration)
 //    }
     
@@ -21,17 +21,17 @@ final class CurrencyTestCase: XCTestCase {
         configuration.protocolClasses = [MockCurrencyFailedCallbackIfError.self]
         let urlSession = URLSession(configuration: configuration)
 
-        let currencyModel = CurrencyModel(session: urlSession)
+        let currencyModel = CurrencyViewModel(session: urlSession)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        currencyModel.getSymbols { success in
+        currencyModel.getSymbols { getSymbols in
             
-//            XCTAssertThrowsError<#_#>(let trez = try success(), "Error incorrect expression") { error in
+//            XCTAssertThrowsError(let trez = try getSymbols(), "Error incorrect expression") { error in
 //                XCTAssertEqual(error as? CurrencyService.AsyncError, CurrencyService.AsyncError.response)
 //            }
             
             do {
-                try success()
+                let _ = try getSymbols()
             } catch {
                 debugPrint("XCTAssertEqual :: CurrencyService.AsyncError.response")
                 XCTAssertEqual(error as? CurrencyService.AsyncError, CurrencyService.AsyncError.response)
@@ -49,12 +49,12 @@ final class CurrencyTestCase: XCTestCase {
         configuration.protocolClasses = [MockCurrencyFailedCallbackIfNoData.self]
         let urlSession = URLSession(configuration: configuration)
 
-        let currencyModel = CurrencyModel(session: urlSession)
+        let currencyModel = CurrencyViewModel(session: urlSession)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        currencyModel.getSymbols { success in
+        currencyModel.getSymbols { getSymbols in
             do {
-                try success()
+                let _ = try getSymbols()
             } catch {
                 debugPrint("XCTAssertEqual :: CurrencyService.AsyncError.data")
                 XCTAssertEqual(error as? CurrencyService.AsyncError, CurrencyService.AsyncError.data)
@@ -71,12 +71,12 @@ final class CurrencyTestCase: XCTestCase {
         configuration.protocolClasses = [MockCurrencyFailedCallbackIfDecodeError.self]
         let urlSession = URLSession(configuration: configuration)
 
-        let currencyModel = CurrencyModel(session: urlSession)
+        let currencyModel = CurrencyViewModel(session: urlSession)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        currencyModel.getSymbols { success in
+        currencyModel.getSymbols { getSymbols in
             do {
-                try success()
+                let _ = try getSymbols()
             } catch {
                 debugPrint("XCTAssertEqual :: CurrencyService.AsyncError.decode")
                 XCTAssertEqual(error as? CurrencyService.AsyncError, CurrencyService.AsyncError.decode)
@@ -93,14 +93,14 @@ final class CurrencyTestCase: XCTestCase {
         configuration.protocolClasses = [MockCurrencySuccess.self]
         let urlSession = URLSession(configuration: configuration)
 
-        let currencyModel = CurrencyModel(session: urlSession)
+        let currencyModel = CurrencyViewModel(session: urlSession)
         
         XCTAssertNil(currencyModel.availableCurrencies)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        currencyModel.getSymbols { success in
+        currencyModel.getSymbols { getSymbols in
             do {
-                try success()
+                let _ = try getSymbols()
                 debugPrint("XCTAssertEqual :: Success")
                 XCTAssertEqual(currencyModel.availableCurrencies, ["Bhutanese Ngultrum", "Bitcoin", "Botswanan Pula", "Euro", "United States Dollar"])
             } catch {
@@ -121,7 +121,7 @@ final class CurrencyTestCase: XCTestCase {
         configuration.protocolClasses = [MockCurrencyFailedCallbackIfError.self]
         let urlSession = URLSession(configuration: configuration)
 
-        let currencyModel = CurrencyModel(session: urlSession)
+        let currencyModel = CurrencyViewModel(session: urlSession)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getConversion(from: "EUR", to: "USD", amount: 1) { result in
@@ -131,7 +131,7 @@ final class CurrencyTestCase: XCTestCase {
 //            }
             
             do {
-                let amount = try result()
+                let _ = try result()
             } catch {
                 debugPrint("XCTAssertEqual :: CurrencyService.AsyncError.response")
                 XCTAssertEqual(error as? CurrencyService.AsyncError, CurrencyService.AsyncError.response)
@@ -149,12 +149,12 @@ final class CurrencyTestCase: XCTestCase {
         configuration.protocolClasses = [MockCurrencyFailedCallbackIfNoData.self]
         let urlSession = URLSession(configuration: configuration)
 
-        let currencyModel = CurrencyModel(session: urlSession)
+        let currencyModel = CurrencyViewModel(session: urlSession)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getConversion(from: "EUR", to: "USD", amount: 1) { result in
             do {
-                let amount = try result()
+                let _ = try result()
             } catch {
                 debugPrint("XCTAssertEqual :: CurrencyService.AsyncError.data")
                 XCTAssertEqual(error as? CurrencyService.AsyncError, CurrencyService.AsyncError.data)
@@ -171,12 +171,12 @@ final class CurrencyTestCase: XCTestCase {
         configuration.protocolClasses = [MockCurrencyFailedCallbackIfDecodeError.self]
         let urlSession = URLSession(configuration: configuration)
 
-        let currencyModel = CurrencyModel(session: urlSession)
+        let currencyModel = CurrencyViewModel(session: urlSession)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getConversion(from: "EUR", to: "USD", amount: 1) { result in
             do {
-                let amount = try result()
+                let _ = try result()
             } catch {
                 debugPrint("XCTAssertEqual :: CurrencyService.AsyncError.decode")
                 XCTAssertEqual(error as? CurrencyService.AsyncError, CurrencyService.AsyncError.decode)
@@ -195,7 +195,7 @@ final class CurrencyTestCase: XCTestCase {
         configuration.protocolClasses = [MockCurrencyConvertSuccess.self]
         let urlSession = URLSession(configuration: configuration)
 
-        let currencyModel = CurrencyModel(session: urlSession)
+        let currencyModel = CurrencyViewModel(session: urlSession)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getConversion(from: "EUR", to: "USD", amount: 1) { result in
@@ -218,7 +218,7 @@ final class CurrencyTestCase: XCTestCase {
         configuration.protocolClasses = [MockCurrencyConvertSuccess.self]
         let urlSession = URLSession(configuration: configuration)
 
-        let currencyModel = CurrencyModel(session: urlSession)
+        let currencyModel = CurrencyViewModel(session: urlSession)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getConversion(from: "EUR", to: "USD", amount: 1) { result in

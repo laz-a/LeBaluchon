@@ -34,14 +34,88 @@
                     <view key="view" contentMode="scaleToFill" id="W8m-Zw-Hig">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ks1-Pb-Pce">
+                                <rect key="frame" x="30" y="77" width="330" height="260"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="gz7-Dk-yzV">
+                                        <rect key="frame" x="0.0" y="0.0" width="330" height="34"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybd-Sv-QmU">
+                                                <rect key="frame" x="0.0" y="0.0" width="152.66666666666666" height="34"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BZl-5N-viB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="34"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad"/>
+                                                        <connections>
+                                                            <action selector="editFromTextField:" destination="TZ4-VA-M8x" eventType="editingChanged" id="zSt-24-CmM"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUl-Ud-sJk">
+                                                        <rect key="frame" x="120.00000000000001" y="0.0" width="32.666666666666671" height="34"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sDc-Fd-Mkq">
+                                                <rect key="frame" x="177.66666666666663" y="0.0" width="152.33333333333337" height="34"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B3y-PS-0Pr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="34"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfg-xQ-FBc">
+                                                        <rect key="frame" x="117.66666666666667" y="0.0" width="34.666666666666671" height="34"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02b-c8-bHa">
+                                        <rect key="frame" x="0.0" y="44" width="330" height="216"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="TZ4-VA-M8x" id="Lbc-FY-dNy"/>
+                                            <outlet property="delegate" destination="TZ4-VA-M8x" id="fX6-rU-PEX"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="qAC-iT-0l9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Ks1-Pb-Pce" firstAttribute="leading" secondItem="W8m-Zw-Hig" secondAttribute="leading" constant="30" id="Ggo-ne-3U2"/>
+                            <constraint firstItem="Ks1-Pb-Pce" firstAttribute="top" secondItem="qAC-iT-0l9" secondAttribute="top" constant="30" id="PXW-wn-Yjz"/>
+                            <constraint firstItem="qAC-iT-0l9" firstAttribute="trailing" secondItem="Ks1-Pb-Pce" secondAttribute="trailing" constant="30" id="cVi-MU-RMG"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="O0A-zr-qOQ" appends="YES" id="LRN-xp-LiH"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Currency" image="currency" id="5Zr-ko-MeA"/>
+                    <connections>
+                        <outlet property="fromTextField" destination="BZl-5N-viB" id="HpT-g2-PD8"/>
+                        <outlet property="toCodeLabel" destination="kfg-xQ-FBc" id="Jy4-DP-9Lt"/>
+                        <outlet property="toPickerView" destination="02b-c8-bHa" id="i1c-mz-ngD"/>
+                        <outlet property="toTextField" destination="B3y-PS-0Pr" id="Glt-gf-ByI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0xB-nH-6Kn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="O0A-zr-qOQ">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="TZ4-VA-M8x" id="T3q-8I-CQJ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-835" y="173"/>
+            <point key="canvasLocation" x="-835.38461538461536" y="172.74881516587678"/>
         </scene>
         <!--Translate-->
         <scene sceneID="6Fl-Us-d1J">
@@ -82,6 +156,9 @@
         <image name="weather" width="25" height="25"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

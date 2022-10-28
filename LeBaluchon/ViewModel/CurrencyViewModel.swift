@@ -7,30 +7,33 @@
 
 import Foundation
 
-class CurrencyModel {
-    var symbols: [String: String]?
+class CurrencyViewModel {
+    var symbols: [CurrencySymbols.Symbol]?
     var currencyService = CurrencyService.shared
     
-    var availableCurrencies: [String]? {
-        if let symbols = symbols {
-            return Array(symbols.values).sorted()
-        }
-        return nil
-    }
-    
     var conversionsRates = Set<ConversionRate>()
+    
+    init() {}
     
     init(session: URLSession) {
         currencyService = CurrencyService(session: session)
     }
     
-    func getSymbols(completionHandler: @escaping(() throws -> ()) -> Void) {
-        currencyService.getAvailableCurrencies { symbols in
-            do {
-                self.symbols = try symbols()
-                completionHandler({})
-            } catch  {
-                completionHandler({ throw error })
+    func getSymbols(completionHandler: @escaping(() throws -> ([CurrencySymbols.Symbol])) -> Void) {
+        if let symbols = symbols {
+            completionHandler({ return symbols })
+        } else {
+            currencyService.getAvailableCurrencies { getSymbols in
+                do {
+                    self.symbols = try getSymbols()
+                    
+                    //let ints = self.symbols.map { "\($0) ::" }
+                    //print(ints)
+                    
+                    completionHandler({ return self.symbols! })
+                } catch  {
+                    completionHandler({ throw error })
+                }
             }
         }
     }
@@ -39,9 +42,9 @@ class CurrencyModel {
         if let conversionRate = conversionsRates.first(where: { $0.from == from && $0.to == to }) {
             completionHandler({ return amount * conversionRate.rate })
         } else {
-            currencyService.getConversionRate(from: from, to: to) { conversionRate in
+            currencyService.getConversionRate(from: from, to: to) { getConversionRate in
                 do {
-                    let conversionRate = try conversionRate()
+                    let conversionRate = try getConversionRate()
                     self.conversionsRates.insert(conversionRate)
                     completionHandler({ return amount * conversionRate.rate })
                 } catch  {

@@ -8,8 +8,22 @@
 import Foundation
 
 struct CurrencySymbols: Decodable {
-    let success: Bool
-    let symbols: [String: String]
+    let symbols: [Symbol]
+    
+    struct Symbol {
+        let code: String
+        let country: String
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case symbols
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let symbols = try values.decode([String: String].self, forKey: .symbols)
+        self.symbols = symbols.sorted{ $0.value < $1.value }.map { Symbol(code: $0.key, country: $0.value) }
+    }
 }
 
 struct ConversionRate: Decodable, Equatable, Hashable {
