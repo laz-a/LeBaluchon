@@ -79,12 +79,12 @@ class CurrencyService {
         
         task?.cancel()
         task = session.dataTask(with: requestConvert) { data, response, error in
-            guard let data = data, error == nil else {
-                callback({ throw AsyncError.data })
-                return
-            }
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                 callback({ throw AsyncError.response })
+                return
+            }
+            guard let data = data, !data.isEmpty, error == nil else {
+                callback({ throw AsyncError.data })
                 return
             }
             guard let conversionRate = try? JSONDecoder().decode(ConversionRate.self, from: data) else {

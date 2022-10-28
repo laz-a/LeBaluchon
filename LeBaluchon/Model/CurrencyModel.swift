@@ -34,4 +34,20 @@ class CurrencyModel {
             }
         }
     }
+    
+    func getConversion(from: String, to: String, amount: Double, completionHandler: @escaping(() throws -> Double) -> Void) {
+        if let conversionRate = conversionsRates.first(where: { $0.from == from && $0.to == to }) {
+            completionHandler({ return amount * conversionRate.rate })
+        } else {
+            currencyService.getConversionRate(from: from, to: to) { conversionRate in
+                do {
+                    let conversionRate = try conversionRate()
+                    self.conversionsRates.insert(conversionRate)
+                    completionHandler({ return amount * conversionRate.rate })
+                } catch  {
+                    completionHandler({ throw error })
+                }
+            }
+        }
+    }
 }

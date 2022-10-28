@@ -33,6 +33,7 @@ class MockURLProtocol: URLProtocol {
     }
 }
 
+
 class MockCurrencyFailedCallbackIfError: MockURLProtocol {
     override func startLoading() {
         MockCurrencyFailedCallbackIfError.requestHandler = { request in
@@ -69,3 +70,14 @@ class MockCurrencySuccess: MockURLProtocol {
         super.startLoading()
     }
 }
+
+
+class MockCurrencyConvertSuccess: MockURLProtocol {
+    override func startLoading() {
+        MockCurrencyConvertSuccess.requestHandler = { request in
+            return (ResponseDataFake.responseOk, ResponseDataFake.currencyServiceConvertData)
+        }
+        super.startLoading()
+    }
+}
+
