@@ -26,10 +26,6 @@ class CurrencyViewModel {
             currencyService.getAvailableCurrencies { getSymbols in
                 do {
                     self.symbols = try getSymbols()
-                    
-                    //let ints = self.symbols.map { "\($0) ::" }
-                    //print(ints)
-                    
                     completionHandler({ return self.symbols! })
                 } catch  {
                     completionHandler({ throw error })

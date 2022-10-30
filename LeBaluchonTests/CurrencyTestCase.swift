@@ -95,17 +95,14 @@ final class CurrencyTestCase: XCTestCase {
 
         let currencyModel = CurrencyViewModel(session: urlSession)
         
-        XCTAssertNil(currencyModel.availableCurrencies)
+        XCTAssertNil(currencyModel.symbols)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getSymbols { getSymbols in
-            do {
-                let _ = try getSymbols()
-                debugPrint("XCTAssertEqual :: Success")
-                XCTAssertEqual(currencyModel.availableCurrencies, ["Bhutanese Ngultrum", "Bitcoin", "Botswanan Pula", "Euro", "United States Dollar"])
-            } catch {
-            }
             
+            if let symbols = try? getSymbols() {
+                XCTAssertEqual(symbols.map { $0.country }, ["Bhutanese Ngultrum", "Bitcoin", "Botswanan Pula", "Euro", "United States Dollar"])
+            }
             expectation.fulfill()
         }
         

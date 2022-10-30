@@ -3,6 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -64,12 +65,12 @@
                                                 <rect key="frame" x="177.66666666666663" y="0.0" width="152.33333333333337" height="34"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B3y-PS-0Pr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="34"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="119" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfg-xQ-FBc">
-                                                        <rect key="frame" x="117.66666666666667" y="0.0" width="34.666666666666671" height="34"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfg-xQ-FBc">
+                                                        <rect key="frame" x="119.00000000000001" y="0.0" width="33.333333333333329" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -124,14 +125,102 @@
                     <view key="view" contentMode="scaleToFill" id="2wQ-on-ijz">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="HLj-au-V3m">
+                                <rect key="frame" x="10" y="147" width="370" height="604"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="NjK-VU-kWC">
+                                        <rect key="frame" x="0.0" y="0.0" width="370" height="36"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3L-8p-ZJe">
+                                                <rect key="frame" x="0.0" y="1" width="164" height="34.333333333333336"/>
+                                                <color key="backgroundColor" red="0.71520793439999997" green="0.40933218599999999" blue="0.60698616500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Langue from"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehB-vS-XjS">
+                                                <rect key="frame" x="167" y="1" width="36" height="34.666666666666671"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="ehB-vS-XjS" secondAttribute="height" multiplier="1:1" id="5Gb-Od-Gv3"/>
+                                                    <constraint firstAttribute="height" constant="36" id="Zdh-IU-5GA"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <imageReference key="backgroundImage" image="arrow.left.arrow.right.circle.fill" catalog="system" symbolScale="default" renderingMode="original"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73I-3L-JIf">
+                                                <rect key="frame" x="206" y="1" width="164" height="34.333333333333336"/>
+                                                <color key="backgroundColor" red="0.71520793439999997" green="0.40933218599999999" blue="0.60698616500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Langue to"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="QAH-Nb-5cg"/>
+                                            <constraint firstItem="G3L-8p-ZJe" firstAttribute="width" secondItem="73I-3L-JIf" secondAttribute="width" id="kwP-aE-1lw"/>
+                                        </constraints>
+                                    </stackView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W4f-ON-pCy">
+                                        <rect key="frame" x="0.0" y="41" width="370" height="259.33333333333331"/>
+                                        <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ah5-sV-d3z">
+                                        <rect key="frame" x="0.0" y="305.33333333333331" width="370" height="34.333333333333314"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Translate"/>
+                                    </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YmB-cS-v8o">
+                                        <rect key="frame" x="0.0" y="344.66666666666674" width="370" height="259.33333333333326"/>
+                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <constraints>
+                                    <constraint firstItem="YmB-cS-v8o" firstAttribute="height" secondItem="W4f-ON-pCy" secondAttribute="height" id="cHC-SG-aJ4"/>
+                                </constraints>
+                            </stackView>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YG5-rt-pnk">
+                                <rect key="frame" x="0.0" y="502" width="390" height="259"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="0KM-Zz-YN8" id="26w-2K-ceM"/>
+                                    <outlet property="delegate" destination="0KM-Zz-YN8" id="yJl-KA-Qn7"/>
+                                </connections>
+                            </pickerView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ElV-RB-MhJ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <constraints>
+                            <constraint firstItem="YG5-rt-pnk" firstAttribute="height" secondItem="YmB-cS-v8o" secondAttribute="height" id="8S5-Pn-fGZ"/>
+                            <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="YG5-rt-pnk" secondAttribute="bottom" id="9da-n8-aE4"/>
+                            <constraint firstItem="HLj-au-V3m" firstAttribute="leading" secondItem="ElV-RB-MhJ" secondAttribute="leading" constant="10" id="CeW-0I-Ibw"/>
+                            <constraint firstItem="HLj-au-V3m" firstAttribute="top" secondItem="ElV-RB-MhJ" secondAttribute="top" constant="100" id="IkA-S8-sdQ"/>
+                            <constraint firstItem="YG5-rt-pnk" firstAttribute="trailing" secondItem="ElV-RB-MhJ" secondAttribute="trailing" id="bPl-Ps-KtB"/>
+                            <constraint firstItem="YG5-rt-pnk" firstAttribute="leading" secondItem="ElV-RB-MhJ" secondAttribute="leading" id="kXa-NX-YBA"/>
+                            <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="HLj-au-V3m" secondAttribute="bottom" constant="10" id="nmI-C3-U4U"/>
+                            <constraint firstAttribute="trailing" secondItem="HLj-au-V3m" secondAttribute="trailing" constant="10" id="skk-U4-Ecp"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Translate" image="translate" id="13P-lL-nd9"/>
+                    <connections>
+                        <outlet property="fromLanguageButton" destination="G3L-8p-ZJe" id="GEj-Tk-Lq8"/>
+                        <outlet property="selectLanguagePickerView" destination="YG5-rt-pnk" id="0Iy-bx-DTP"/>
+                        <outlet property="toLanguageButton" destination="73I-3L-JIf" id="DgH-cv-F8A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w5u-g1-RAv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="108" y="173"/>
+            <point key="canvasLocation" x="107.69230769230769" y="172.74881516587678"/>
         </scene>
         <!--Weather-->
         <scene sceneID="FO7-KA-97t">
@@ -151,14 +240,33 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.left.arrow.right.circle.fill" catalog="system" width="128" height="123"/>
         <image name="currency" width="25" height="25"/>
         <image name="translate" width="25" height="25"/>
         <image name="weather" width="25" height="25"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

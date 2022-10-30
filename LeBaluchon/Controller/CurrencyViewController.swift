@@ -22,17 +22,19 @@ class CurrencyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.toPickerView.isHidden = true
         currencyModel.getSymbols { getSymbols in
             do {
                 let symbols = try getSymbols()
                 self.toPickerView.reloadAllComponents()
                 if let usdIndex = symbols.firstIndex(where: { $0.code == "USD" }) {
                     self.toPickerView.selectRow(usdIndex, inComponent: 0, animated: false)
+                    self.pickerView(self.toPickerView, didSelectRow: usdIndex, inComponent: 0)
+                    self.toPickerView.isHidden = false
                 }
             } catch {
                 print(error)
             }
-            
         }
     }
     
