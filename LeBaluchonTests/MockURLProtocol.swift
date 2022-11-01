@@ -33,30 +33,41 @@ class MockURLProtocol: URLProtocol {
     }
 }
 
+// MARK: - Default
 
-class MockCurrencyFailedCallbackIfError: MockURLProtocol {
+class MockFailedCallbackIfError: MockURLProtocol {
     override func startLoading() {
-        MockCurrencyFailedCallbackIfError.requestHandler = { request in
+        MockFailedCallbackIfError.requestHandler = { request in
             return (ResponseDataFake.responseNok, nil)
         }
         super.startLoading()
     }
 }
 
-class MockCurrencyFailedCallbackIfNoData: MockURLProtocol {
+class MockFailedCallbackIfNoData: MockURLProtocol {
     override func startLoading() {
-        MockCurrencyFailedCallbackIfNoData.requestHandler = { request in
+        MockFailedCallbackIfNoData.requestHandler = { request in
             return (ResponseDataFake.responseOk, nil)
         }
         super.startLoading()
     }
 }
 
-
-class MockCurrencyFailedCallbackIfDecodeError: MockURLProtocol {
+class MockFailedCallbackIfDecodeError: MockURLProtocol {
     override func startLoading() {
-        MockCurrencyFailedCallbackIfDecodeError.requestHandler = { request in
-            return (ResponseDataFake.responseOk, ResponseDataFake.currencyIncorrectData)
+        MockFailedCallbackIfDecodeError.requestHandler = { request in
+            return (ResponseDataFake.responseOk, ResponseDataFake.incorrectData)
+        }
+        super.startLoading()
+    }
+}
+
+// MARK: - Currency
+
+class MockCurrencyFailedCallbackIfDataError: MockURLProtocol {
+    override func startLoading() {
+        MockCurrencyFailedCallbackIfDataError.requestHandler = { request in
+            return (ResponseDataFake.responseOk, ResponseDataFake.currencyServiceDataError)
         }
         super.startLoading()
     }
@@ -71,7 +82,6 @@ class MockCurrencySuccess: MockURLProtocol {
     }
 }
 
-
 class MockCurrencyConvertSuccess: MockURLProtocol {
     override func startLoading() {
         MockCurrencyConvertSuccess.requestHandler = { request in
@@ -81,3 +91,22 @@ class MockCurrencyConvertSuccess: MockURLProtocol {
     }
 }
 
+// MARK: - Translate
+
+class MockTranslateLanguagesSuccess: MockURLProtocol {
+    override func startLoading() {
+        MockTranslateLanguagesSuccess.requestHandler = { request in
+            return (ResponseDataFake.responseOk, ResponseDataFake.translateLanguages)
+        }
+        super.startLoading()
+    }
+}
+
+class MockTranslateTranslationSuccess: MockURLProtocol {
+    override func startLoading() {
+        MockTranslateTranslationSuccess.requestHandler = { request in
+            return (ResponseDataFake.responseOk, ResponseDataFake.translateTranslation)
+        }
+        super.startLoading()
+    }
+}

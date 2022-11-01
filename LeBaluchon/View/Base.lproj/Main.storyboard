@@ -138,6 +138,9 @@
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Langue from"/>
+                                                <connections>
+                                                    <action selector="tappedSelectLanguage:" destination="0KM-Zz-YN8" eventType="touchUpInside" id="n8v-bp-0zt"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehB-vS-XjS">
                                                 <rect key="frame" x="167" y="1" width="36" height="34.666666666666671"/>
@@ -149,6 +152,9 @@
                                                 <state key="normal">
                                                     <imageReference key="backgroundImage" image="arrow.left.arrow.right.circle.fill" catalog="system" symbolScale="default" renderingMode="original"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="tappedSwapLanguageButton:" destination="0KM-Zz-YN8" eventType="touchUpInside" id="DM7-Wg-4Lv"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73I-3L-JIf">
                                                 <rect key="frame" x="206" y="1" width="164" height="34.333333333333336"/>
@@ -156,6 +162,9 @@
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Langue to"/>
+                                                <connections>
+                                                    <action selector="tappedSelectLanguage:" destination="0KM-Zz-YN8" eventType="touchUpInside" id="bOr-bO-oSA"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
@@ -167,15 +176,24 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W4f-ON-pCy">
                                         <rect key="frame" x="0.0" y="41" width="370" height="259.33333333333331"/>
                                         <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                        <string key="text">Bonjour, comment va tu ?
+Moi, je vais bien et toi ?
+Ça dépend de la vie</string>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="0KM-Zz-YN8" id="g0k-1N-fId"/>
+                                        </connections>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ah5-sV-d3z">
                                         <rect key="frame" x="0.0" y="305.33333333333331" width="370" height="34.333333333333314"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Translate"/>
+                                        <connections>
+                                            <action selector="tappedTranslateButton:" destination="0KM-Zz-YN8" eventType="touchUpInside" id="xO5-0K-70e"/>
+                                        </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YmB-cS-v8o">
                                         <rect key="frame" x="0.0" y="344.66666666666674" width="370" height="259.33333333333326"/>
@@ -190,8 +208,9 @@
                                     <constraint firstItem="YmB-cS-v8o" firstAttribute="height" secondItem="W4f-ON-pCy" secondAttribute="height" id="cHC-SG-aJ4"/>
                                 </constraints>
                             </stackView>
-                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YG5-rt-pnk">
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YG5-rt-pnk">
                                 <rect key="frame" x="0.0" y="502" width="390" height="259"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="0KM-Zz-YN8" id="26w-2K-ceM"/>
                                     <outlet property="delegate" destination="0KM-Zz-YN8" id="yJl-KA-Qn7"/>
@@ -200,6 +219,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ElV-RB-MhJ"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="YG5-rt-pnk" firstAttribute="height" secondItem="YmB-cS-v8o" secondAttribute="height" id="8S5-Pn-fGZ"/>
                             <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="YG5-rt-pnk" secondAttribute="bottom" id="9da-n8-aE4"/>
@@ -210,15 +230,25 @@
                             <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="HLj-au-V3m" secondAttribute="bottom" constant="10" id="nmI-C3-U4U"/>
                             <constraint firstAttribute="trailing" secondItem="HLj-au-V3m" secondAttribute="trailing" constant="10" id="skk-U4-Ecp"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="v4B-2r-03A" appends="YES" id="CTY-g6-inS"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Translate" image="translate" id="13P-lL-nd9"/>
                     <connections>
                         <outlet property="fromLanguageButton" destination="G3L-8p-ZJe" id="GEj-Tk-Lq8"/>
                         <outlet property="selectLanguagePickerView" destination="YG5-rt-pnk" id="0Iy-bx-DTP"/>
                         <outlet property="toLanguageButton" destination="73I-3L-JIf" id="DgH-cv-F8A"/>
+                        <outlet property="translateTextView" destination="W4f-ON-pCy" id="xjf-BW-bSh"/>
+                        <outlet property="translatedTextView" destination="YmB-cS-v8o" id="OGw-5j-MlE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w5u-g1-RAv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="v4B-2r-03A">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="0KM-Zz-YN8" id="e61-Kj-UV4"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="107.69230769230769" y="172.74881516587678"/>
         </scene>

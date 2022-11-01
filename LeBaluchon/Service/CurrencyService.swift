@@ -10,45 +10,22 @@ import Foundation
 class CurrencyService {
     static var shared = CurrencyService()
     private init() {}
-
+    
+    private static let url = "https://api.apilayer.com/fixer"
     private static let apiKey = ApiKey.fixer
     
-    private static var from = "EUR"
-    private static var to = "USD"
-
-    private static let urlSymbols = URL(string: "https://api.apilayer.com/fixer/symbols")!
-    private static var urlConversion: URL {
-        return URL(string: "https://api.apilayer.com/fixer/convert?from=\(CurrencyService.from)&to=\(CurrencyService.to)&amount=1")!
-    }
-
     private var task: URLSessionDataTask?
     private var session = URLSession.shared
-
-    private var requestSymbols: URLRequest {
-        var request = URLRequest(url: CurrencyService.urlSymbols)
-        request.httpMethod = "GET"
-        request.addValue(CurrencyService.apiKey, forHTTPHeaderField: "apikey")
-        return request
-    }
-
-    private var requestConvert: URLRequest {
-        var request = URLRequest(url: CurrencyService.urlConversion)
-        request.httpMethod = "GET"
-        request.addValue(CurrencyService.apiKey, forHTTPHeaderField: "apikey")
-        return request
-    }
-    
-    enum AsyncError: Error {
-        case data
-        case response
-        case decode
-    }
     
     init(session: URLSession) {
         self.session = session
     }
 
     func getAvailableCurrencies(callback: @escaping(() throws -> [CurrencySymbols.Symbol]) -> Void) {
+        let urlSymbols = URL(string: "\(CurrencyService.url)/symbols")!
+        var requestSymbols = URLRequest(url: urlSymbols)
+        requestSymbols.addValue(CurrencyService.apiKey, forHTTPHeaderField: "apikey")
+        
         task?.cancel()
         task = session.dataTask(with: requestSymbols) { data, response, error in
             DispatchQueue.main.async {
@@ -60,6 +37,13 @@ class CurrencyService {
                     callback({ throw AsyncError.data })
                     return
                 }
+                
+                if let symbolsError = try? JSONDecoder().decode(CurrencyError.self, from: data) {
+                    debugPrint("~~~~~~~~~~~~~~\(symbolsError.error.info)")
+                    callback({ throw AsyncError.json })
+                    return
+                }
+                
                 guard let symbols = try? JSONDecoder().decode(CurrencySymbols.self, from: data) else {
                     print(response.statusCode)
                     callback({ throw AsyncError.decode })
@@ -73,9 +57,9 @@ class CurrencyService {
     }
 
     func getConversionRate(from: String, to: String, callback: @escaping(() throws -> (ConversionRate)) -> Void) {
-        
-        CurrencyService.from = from
-        CurrencyService.to = to
+        let urlConversion = URL(string: "\(CurrencyService.url)/convert?from=\(from)&to=\(to)&amount=1")!
+        var requestConvert = URLRequest(url: urlConversion)
+        requestConvert.addValue(CurrencyService.apiKey, forHTTPHeaderField: "apikey")
         
         task?.cancel()
         task = session.dataTask(with: requestConvert) { data, response, error in
@@ -88,20 +72,18 @@ class CurrencyService {
                     callback({ throw AsyncError.data })
                     return
                 }
+                                
+                if let conversionError = try? JSONDecoder().decode(CurrencyError.self, from: data) {
+                    print("\(conversionError.error.info)")
+                    callback({ throw AsyncError.json })
+                    return
+                }
+                
                 guard let conversionRate = try? JSONDecoder().decode(ConversionRate.self, from: data) else {
                     print(response.statusCode)
                     callback({ throw AsyncError.decode })
                     return
                 }
-                
-                
-                //guard let conversionError = try? JSONDecoder().decode(CurrencyError.self, from: data) else {
-                //                print(response.statusCode)
-                //                print("guard let conversionError = try? JSONDecoder().decode(ConversionError.self, from: data) else")
-                //                callback({ throw AsyncError.json })
-                //                return
-                //}
-                
                 callback({ return conversionRate })
             }
         }

@@ -25,6 +25,8 @@
 		6FB7C8CB290C8A0100B00262 /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7C8CA290C8A0100B00262 /* TranslateService.swift */; };
 		6FB7C8CD290C8B8300B00262 /* Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7C8CC290C8B8300B00262 /* Translate.swift */; };
 		6FB7C8CF290D5E7B00B00262 /* TranslateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7C8CE290D5E7B00B00262 /* TranslateViewModel.swift */; };
+		6FB7C8D129101E4200B00262 /* TranslateTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7C8D029101E4200B00262 /* TranslateTestCase.swift */; };
+		6FB7C8D329106D0900B00262 /* AsyncError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7C8D229106D0900B00262 /* AsyncError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		6FB7C8CA290C8A0100B00262 /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
 		6FB7C8CC290C8B8300B00262 /* Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translate.swift; sourceTree = "<group>"; };
 		6FB7C8CE290D5E7B00B00262 /* TranslateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewModel.swift; sourceTree = "<group>"; };
+		6FB7C8D029101E4200B00262 /* TranslateTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateTestCase.swift; sourceTree = "<group>"; };
+		6FB7C8D229106D0900B00262 /* AsyncError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				6F740A49290722B700F89AD2 /* CurrencyTestCase.swift */,
+				6FB7C8D029101E4200B00262 /* TranslateTestCase.swift */,
 				6F740A452907204400F89AD2 /* MockURLProtocol.swift */,
 				6F740A472907206500F89AD2 /* ResponseDataFake.swift */,
 			);
@@ -148,6 +153,7 @@
 			children = (
 				6F18C2232906D48000969459 /* Currency.swift */,
 				6FB7C8CC290C8B8300B00262 /* Translate.swift */,
+				6FB7C8D229106D0900B00262 /* AsyncError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -282,6 +288,7 @@
 				6F18C1E42906D02200969459 /* AppDelegate.swift in Sources */,
 				6F18C21B2906D2B200969459 /* WeatherViewController.swift in Sources */,
 				6F18C21F2906D3AA00969459 /* CurrencyService.swift in Sources */,
+				6FB7C8D329106D0900B00262 /* AsyncError.swift in Sources */,
 				6F18C2192906D29500969459 /* TranslateViewController.swift in Sources */,
 				6F18C2242906D48000969459 /* Currency.swift in Sources */,
 				6FB7C8CD290C8B8300B00262 /* Translate.swift in Sources */,
@@ -298,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FB7C8D129101E4200B00262 /* TranslateTestCase.swift in Sources */,
 				6F740A4A290722B700F89AD2 /* CurrencyTestCase.swift in Sources */,
 				6F740A462907204400F89AD2 /* MockURLProtocol.swift in Sources */,
 				6F740A482907206500F89AD2 /* ResponseDataFake.swift in Sources */,

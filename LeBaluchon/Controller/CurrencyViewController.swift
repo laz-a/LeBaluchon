@@ -13,10 +13,7 @@ class CurrencyViewController: UIViewController {
     
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var toTextField: UITextField!
-    
     @IBOutlet weak var toCodeLabel: UILabel!
-    
-    
     @IBOutlet weak var toPickerView: UIPickerView!
     
     override func viewDidLoad() {
@@ -30,8 +27,8 @@ class CurrencyViewController: UIViewController {
                 if let usdIndex = symbols.firstIndex(where: { $0.code == "USD" }) {
                     self.toPickerView.selectRow(usdIndex, inComponent: 0, animated: false)
                     self.pickerView(self.toPickerView, didSelectRow: usdIndex, inComponent: 0)
-                    self.toPickerView.isHidden = false
                 }
+                self.toPickerView.isHidden = false
             } catch {
                 print(error)
             }
@@ -68,7 +65,6 @@ class CurrencyViewController: UIViewController {
         }
         
         if let to = getToCode(), let amount = Double(amountText) {
-            self.toCodeLabel.text = to
             currencyModel.getConversion(from: from, to: to, amount: amount) { getResult in
                 do {
                     let result = try getResult()
@@ -105,6 +101,9 @@ extension CurrencyViewController: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if let to = getToCode() {
+            self.toCodeLabel.text = to
+        }
         convert()
     }
 }

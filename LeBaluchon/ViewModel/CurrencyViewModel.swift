@@ -9,7 +9,7 @@ import Foundation
 
 class CurrencyViewModel {
     var symbols: [CurrencySymbols.Symbol]?
-    var currencyService = CurrencyService.shared
+    private var currencyService = CurrencyService.shared
     
     var conversionsRates = Set<ConversionRate>()
     
