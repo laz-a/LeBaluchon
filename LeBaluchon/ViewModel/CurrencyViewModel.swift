@@ -8,13 +8,11 @@
 import Foundation
 
 class CurrencyViewModel {
-    var symbols: [CurrencySymbols.Symbol]?
     private var currencyService = CurrencyService.shared
-    
-    var conversionsRates = Set<ConversionRate>()
+    var symbols: [CurrencySymbols.Symbol]?
+    private var conversionsRates = Set<ConversionRate>()
     
     init() {}
-    
     init(session: URLSession) {
         currencyService = CurrencyService(session: session)
     }

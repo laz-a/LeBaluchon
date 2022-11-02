@@ -8,8 +8,7 @@
 import UIKit
 
 class CurrencyViewController: UIViewController {
-
-    let currencyModel = CurrencyViewModel()
+    private let currencyModel = CurrencyViewModel()
     
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var toTextField: UITextField!
@@ -38,7 +37,6 @@ class CurrencyViewController: UIViewController {
     /*
     // MARK: - Navigation
     */
-    
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         fromTextField.resignFirstResponder()
@@ -76,7 +74,6 @@ class CurrencyViewController: UIViewController {
             }
         }
     }
-    
 }
 
 extension CurrencyViewController: UIPickerViewDataSource {
