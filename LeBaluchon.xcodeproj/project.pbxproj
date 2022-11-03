@@ -30,6 +30,7 @@
 		6FB7C8CF290D5E7B00B00262 /* TranslateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7C8CE290D5E7B00B00262 /* TranslateViewModel.swift */; };
 		6FB7C8D129101E4200B00262 /* TranslateTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7C8D029101E4200B00262 /* TranslateTestCase.swift */; };
 		6FB7C8D329106D0900B00262 /* AsyncError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7C8D229106D0900B00262 /* AsyncError.swift */; };
+		6FC846E629146C4C00C01539 /* DailyWeatherStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC846E529146C4C00C01539 /* DailyWeatherStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		6FB7C8CE290D5E7B00B00262 /* TranslateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewModel.swift; sourceTree = "<group>"; };
 		6FB7C8D029101E4200B00262 /* TranslateTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateTestCase.swift; sourceTree = "<group>"; };
 		6FB7C8D229106D0900B00262 /* AsyncError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncError.swift; sourceTree = "<group>"; };
+		6FC846E529146C4C00C01539 /* DailyWeatherStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				6F18C1E92906D02200969459 /* Main.storyboard */,
 				6F18C1EE2906D02400969459 /* LaunchScreen.storyboard */,
 				6F18C1EC2906D02400969459 /* Assets.xcassets */,
+				6FC846E529146C4C00C01539 /* DailyWeatherStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				6F18C1E42906D02200969459 /* AppDelegate.swift in Sources */,
 				6F18C21B2906D2B200969459 /* WeatherViewController.swift in Sources */,
 				6F18C21F2906D3AA00969459 /* CurrencyService.swift in Sources */,
+				6FC846E629146C4C00C01539 /* DailyWeatherStackView.swift in Sources */,
 				6FB7C8D329106D0900B00262 /* AsyncError.swift in Sources */,
 				6F18C2192906D29500969459 /* TranslateViewController.swift in Sources */,
 				6F18C2242906D48000969459 /* Currency.swift in Sources */,
