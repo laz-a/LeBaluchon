@@ -18,7 +18,10 @@ class CurrencyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.toPickerView.isHidden = true
+        toPickerView.isHidden = true
+        
+        setEnableTextFields(false)
+        
         currencyModel.getSymbols { getSymbols in
             do {
                 let symbols = try getSymbols()
@@ -28,8 +31,9 @@ class CurrencyViewController: UIViewController {
                     self.pickerView(self.toPickerView, didSelectRow: usdIndex, inComponent: 0)
                 }
                 self.toPickerView.isHidden = false
+                self.setEnableTextFields(true)
             } catch {
-                print(error)
+                self.displayAlertError(message: error.localizedDescription)
             }
         }
     }
@@ -44,6 +48,18 @@ class CurrencyViewController: UIViewController {
     
     @IBAction func editFromTextField(_ sender: UITextField) {
         convert()
+    }
+    
+    private func displayAlertError(message: String) {
+        let errorAlertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        errorAlertController.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.present(errorAlertController, animated: true)
+    }
+    
+    private func setEnableTextFields(_ value: Bool) {
+        toTextField.backgroundColor = value ? .white : .lightText
+        fromTextField.backgroundColor = value ? .white : .lightText
+        fromTextField.isEnabled = value
     }
     
     private func getToCode() -> String? {
@@ -69,7 +85,7 @@ class CurrencyViewController: UIViewController {
                     self.toTextField.text = String(format: "%.2f", result)
                 } catch {
                     self.toTextField.text = ""
-                    print(error)
+                    self.displayAlertError(message: error.localizedDescription)
                 }
             }
         }

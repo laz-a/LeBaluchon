@@ -7,9 +7,27 @@
 
 import Foundation
 
-enum AsyncError: String, Error {
-    case data = "No data"
-    case response = "Response error"
-    case decode = "Decode error"
-    case json = "Json"
+enum AsyncError: Error {
+    case data
+    case response
+    case decode
+    case json
+    case location
+}
+
+extension AsyncError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .data:
+            return NSLocalizedString("Error in request data", comment: "Data error")
+        case .response:
+            return NSLocalizedString("Invalid API response", comment: "Response error")
+        case .decode:
+            return NSLocalizedString("Json decoding error", comment: "Decode error")
+        case .json:
+            return NSLocalizedString("Json format error", comment: "Json error")
+        case .location:
+            return NSLocalizedString("Location error", comment: "Location error")
+        }
+    }
 }

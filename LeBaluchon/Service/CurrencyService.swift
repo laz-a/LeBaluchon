@@ -39,13 +39,12 @@ class CurrencyService {
                 }
                 
                 if let symbolsError = try? JSONDecoder().decode(CurrencyError.self, from: data) {
-                    debugPrint("~~~~~~~~~~~~~~\(symbolsError.error.info)")
+                    print("~~~~~~~~~~~~~~\(symbolsError.error.info)")
                     callback({ throw AsyncError.json })
                     return
                 }
                 
                 guard let symbols = try? JSONDecoder().decode(CurrencySymbols.self, from: data) else {
-                    print(response.statusCode)
                     callback({ throw AsyncError.decode })
                     return
                 }
@@ -64,6 +63,9 @@ class CurrencyService {
         task?.cancel()
         task = session.dataTask(with: requestConvert) { data, response, error in
             DispatchQueue.main.async {
+                guard response != nil else {
+                    return
+                }
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                     callback({ throw AsyncError.response })
                     return
@@ -80,7 +82,6 @@ class CurrencyService {
                 }
                 
                 guard let conversionRate = try? JSONDecoder().decode(ConversionRate.self, from: data) else {
-                    print(response.statusCode)
                     callback({ throw AsyncError.decode })
                     return
                 }

@@ -13,6 +13,9 @@ class TranslateViewController: UIViewController {
     @IBOutlet weak var fromLanguageButton: UIButton!
     @IBOutlet weak var toLanguageButton: UIButton!
     
+    @IBOutlet weak var swapLanguageButton: UIButton!
+    @IBOutlet weak var translateButton: UIButton!
+    
     @IBOutlet weak var selectLanguagePickerView: UIPickerView!
     
     @IBOutlet weak var translateTextView: UITextView!
@@ -20,16 +23,15 @@ class TranslateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         selectLanguagePickerView.isHidden = true
+        setEnableButtons(false)
         
         translateModel.getLanguages { getLanguages in
-            print("translateModel.getLanguages")
             do {
                 let languages = try getLanguages()
                 self.selectLanguagePickerView.reloadAllComponents()
                 if let cuurentLanguage = Locale.current.language.languageCode?.identifier {
-                    print("laaaaaz")
                     if let currentLanguageIndex = languages.firstIndex(where: { $0.language == cuurentLanguage }) {
                         self.selectLanguagePickerView.selectRow(currentLanguageIndex, inComponent: 0, animated: false)
                         self.pickerView(self.selectLanguagePickerView, didSelectRow: currentLanguageIndex, inComponent: 0)
@@ -38,9 +40,12 @@ class TranslateViewController: UIViewController {
                         self.selectLanguagePickerView.selectRow(enIndex, inComponent: 1, animated: false)
                         self.pickerView(self.selectLanguagePickerView, didSelectRow: enIndex, inComponent: 1)
                     }
+                    self.setEnableButtons(true)
                 }
             } catch {
-                print(error)
+                let errorAlertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                errorAlertController.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(errorAlertController, animated: true)
             }
         }
     }
@@ -67,7 +72,7 @@ class TranslateViewController: UIViewController {
         selectLanguagePickerView.selectRow(toLanguageIndex, inComponent: 0, animated: false)
         selectLanguagePickerView.selectRow(fromLanguageIndex, inComponent: 1, animated: false)
         
-        translate()
+        setTranslate()
         
         if let translateText = translateTextView.text, !translateText.isEmpty, let translatedText = translatedTextView.text, !translatedText.isEmpty {
             translateTextView.text = translatedText
@@ -81,32 +86,24 @@ class TranslateViewController: UIViewController {
         let fromLanguageRow = selectLanguagePickerView.selectedRow(inComponent: 0)
         let toLanguageRow = selectLanguagePickerView.selectedRow(inComponent: 1)
         
-//        guard let _ = translateModel.languages?.indices.contains(fromLanguageRow), let _ = translateModel.languages?.indices.contains(toLanguageRow) else {
-//            print("guard else !!!")
-//            return
-//        }
-        
         if let fromLanguage = translateModel.languages?[fromLanguageRow].language, let toLanguage = translateModel.languages?[toLanguageRow].language, let text = translateTextView.text, !text.isEmpty {
-            print("\(fromLanguage) :: \(toLanguage)")
             
-            print(text)
-            print(text.components(separatedBy: "\n"))
+            let textArray = text.components(separatedBy: "\n")
             
-            let aze = text.components(separatedBy: "\n")
-            
-            translateModel.getTranslation(from: fromLanguage, to: toLanguage, text: aze) { getTranslation in
+            translateModel.getTranslation(from: fromLanguage, to: toLanguage, text: textArray) { getTranslation in
                 do {
                     let translation = try getTranslation()
                     self.translatedTextView.text = translation.joined(separator: "\n")
-                    print(translation)
                 } catch {
-                    print(error)
+                    let errorAlertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    errorAlertController.addAction(UIAlertAction(title: "Ok", style: .default))
+                    self.present(errorAlertController, animated: true)
                 }
             }
         }
     }
     
-    private func translate() {
+    private func setTranslate() {
         let fromLanguageIndex = selectLanguagePickerView.selectedRow(inComponent: 0)
         let toLanguageIndex = selectLanguagePickerView.selectedRow(inComponent: 1)
         
@@ -114,6 +111,13 @@ class TranslateViewController: UIViewController {
             fromLanguageButton.setTitle(fromLanguage.name, for: .normal)
             toLanguageButton.setTitle(toLanguage.name, for: .normal)
         }
+    }
+    
+    private func setEnableButtons(_ value: Bool){
+        fromLanguageButton.isEnabled = value
+        swapLanguageButton.isEnabled = value
+        toLanguageButton.isEnabled = value
+        translateButton.isEnabled = value
     }
 }
 
@@ -145,7 +149,6 @@ extension TranslateViewController: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(row)
-        translate()
+        setTranslate()
     }
 }
