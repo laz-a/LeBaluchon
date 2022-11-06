@@ -9,26 +9,23 @@ import UIKit
 import CoreLocation
 
 class WeatherViewController: UIViewController {
-
     private let weatherModel = WeatherViewModel()
     private let locationManager = CLLocationManager()
     
-    
     @IBOutlet weak var currentLocationWeatherIcon: UIImageView!
     @IBOutlet weak var currentLocationTempLabel: UILabel!
+    @IBOutlet weak var currentLocationDescriptionLabel: UILabel!
     @IBOutlet weak var currentLocationLabel: UILabel!
     
     @IBOutlet weak var searchLocationTextField: UITextField!
     
-    
-    
     @IBOutlet weak var searchLocationWeatherIcon: UIImageView!
     @IBOutlet weak var searchLocationTempLabel: UILabel!
+    
+    @IBOutlet weak var searchLocationDescriptionLabel: UILabel!
     @IBOutlet weak var searchLocationLabel: UILabel!
     
-    
     @IBOutlet weak var dailyWeatherStackView: UIStackView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,88 +33,85 @@ class WeatherViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-        
-        print("WeatherViewController")
-        
-        //updateWeather(latitude: 2.22, longitude: 3.33)
-        for i in 1...6 {
-            dailyWeatherStackView.addArrangedSubview(DailyWeatherStackView(day: "Le \(i)", temp: "1\(i)°C", icon: "sun.max"))
-        }
     }
     
     /*
     // MARK: - Navigation
     */
     
-    
     @IBAction func dismissKeyboard(_ sender: Any) {
         searchLocationTextField.resignFirstResponder()
     }
     
     @IBAction func tappedSearchButton(_ sender: UIButton) {
+        dismissKeyboard(sender)
         guard let searchLocation = searchLocationTextField.text, !searchLocation.isEmpty else {
             return
         }
-        weatherModel.getWeather(location: searchLocation) { getSearchWeather in
+        
+        weatherForLocation(searchLocation)
+    }
+    
+    private func displayAlertError(message: String) {
+        let errorAlertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        errorAlertController.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.present(errorAlertController, animated: true)
+    }
+    
+    private func weatherForLocation(_ location: String) {
+        weatherModel.getWeatherForLocation(location: location) { getSearchWeather in
             do {
-                let searchWeather = try getSearchWeather()
-                print("searchWeather")
-                self.searchLocationLabel.text = "\(searchWeather.location.city), \(searchWeather.location.country)"
-                self.searchLocationTempLabel.text = String(format: "%.0f℃", searchWeather.weather.current.temp)
-//                if let firstWeather = searchWeather.current.weather.first, let icon = weatherIcon[firstWeather.icon] {
-//                    self.searchLocationWeatherIcon.image = icon
-//                }
-                print(searchWeather)
-                searchWeather.weather.daily.forEach { day in
-                    print("------------------")
-                    print(day.dt)
-                    
-                    let epocTime = TimeInterval(day.dt)
-                    let myDate = Date(timeIntervalSince1970: epocTime)
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateStyle = .medium
-                    //dateFormatter.timeStyle = .none
-                    let dateStr = dateFormatter.string(from: myDate)
-                    print("Converted Time :: \(dateStr)")
-                    
-                    print(day.temp)
-                    print(day.weather.first?.icon)
-                    print("------------------")
+                let searchLocationWeather = try getSearchWeather()
+                let searchLocation = searchLocationWeather.location
+                let searchWeather = searchLocationWeather.weather
+                
+                self.searchLocationLabel.text = "\(searchLocation.city), \(searchLocation.country)"
+                self.searchLocationTempLabel.text = String(format: "%.0f℃", searchWeather.current.temp)
+                
+                if let firstWeather = searchWeather.current.weather.first {
+                    self.searchLocationWeatherIcon.image = UIImage(systemName: firstWeather.icon)
+                    self.searchLocationDescriptionLabel.text = firstWeather.description.capitalized
+                }
+                
+                self.dailyWeatherStackView.subviews.forEach { view in
+                    self.dailyWeatherStackView.removeArrangedSubview(view)
+                    view.removeFromSuperview()
+                }
+                
+                let daily = searchWeather.daily.dropFirst().dropLast()
+                
+                daily.forEach { day in
+                    let myDate = Date(timeIntervalSince1970: TimeInterval(day.dt))
+                    if let firstWeather = day.weather.first {
+                        let dayWeatherView = DailyWeatherStackView(day: myDate, temp: day.temp.day, icon: firstWeather.icon)
+                        self.dailyWeatherStackView.addArrangedSubview(dayWeatherView)
+                    }
                 }
             } catch {
-                print(error)
+                self.displayAlertError(message: error.localizedDescription)
             }
         }
     }
-    
     
     private func updateCurrentInfo(latitude: Double, longitude: Double) {
-        self.weatherModel.getWeather(latitude: latitude, longitude: longitude) { getWeather in
+        self.weatherModel.getWeatherForLocation(latitude: latitude, longitude: longitude) { getWeather in
             do {
-                let weather = try getWeather()
-//                self.currentLocationLabel.text = "\(location.city), \(location.country)"
+                let locationWeather = try getWeather()
+                let location = locationWeather.location
+                let weather = locationWeather.weather
+                
+                self.currentLocationLabel.text = "\(location.city), \(location.country)"
                 self.currentLocationTempLabel.text = String(format: "%.0f℃", weather.current.temp)
-                if let currentWeather = weather.current.weather.first, let iconImage = UIImage(systemName: currentWeather.icon) {
-                    self.currentLocationWeatherIcon.image = iconImage
+                
+                if let currentWeather = weather.current.weather.first {
+                    self.currentLocationWeatherIcon.image = UIImage(systemName: currentWeather.icon)
+                    self.currentLocationDescriptionLabel.text = currentWeather.description.capitalized
                 }
             } catch {
-                print(error)
+                self.displayAlertError(message: error.localizedDescription)
             }
         }
     }
-    
-    private func updateWeather(latitude: Double, longitude: Double) {
-        weatherModel.getWeather(latitude: latitude, longitude: longitude) { getWeather in
-            do {
-                let weather = try getWeather()
-//                print(weather)
-                
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
 }
 
 extension WeatherViewController: CLLocationManagerDelegate {
@@ -125,8 +119,6 @@ extension WeatherViewController: CLLocationManagerDelegate {
         if let location = locations.first {
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
-            
-            print("\(latitude) :: \(longitude)")
             updateCurrentInfo(latitude: latitude, longitude: longitude)
         }
     }
@@ -134,15 +126,15 @@ extension WeatherViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
         case .notDetermined, .restricted, .denied:
-            print("locationManagerDidChangeAuthorization :: pas kool")
+            self.displayAlertError(message: "You need to allow localization")
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.requestLocation()
         @unknown default:
-            print("locationManagerDidChangeAuthorization :: pas kool default")
+            self.displayAlertError(message: "Localization authorization unknow error")
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        self.displayAlertError(message: error.localizedDescription)
     }
 }

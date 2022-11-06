@@ -35,9 +35,6 @@ class WeatherService {
         task?.cancel()
         task = session.dataTask(with: requestWeather) { data, response, error in
             DispatchQueue.main.async {
-                
-                print(response)
-                
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                     callback({ throw AsyncError.response })
                     return

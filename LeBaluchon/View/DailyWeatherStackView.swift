@@ -9,30 +9,32 @@ import UIKit
 
 class DailyWeatherStackView: UIStackView {
     
-    init(day: String, temp: String, icon: String) {
+    init(day: Date, temp: Double, icon: String) {
         super.init(frame: CGRect.zero)
         
         axis = .vertical
         alignment = .fill
         distribution = .fill
         spacing = 3
-        backgroundColor = .cyan
         
         let dayLabel = UILabel()
         dayLabel.textAlignment = .center
-        dayLabel.text = day
+        dayLabel.adjustsFontSizeToFitWidth = true
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E d"
+        
+        dayLabel.text = dateFormatter.string(from: day)
         
         let iconImage = UIImageView()
         iconImage.contentMode = .scaleAspectFit
+        iconImage.tintColor = .black
         iconImage.image = UIImage(systemName: icon)
         
         let tempLabel = UILabel()
         tempLabel.textAlignment = .center
-        tempLabel.text = temp
-        
-        dayLabel.backgroundColor = .magenta
-        iconImage.backgroundColor = .brown
-        tempLabel.backgroundColor = .green
+        tempLabel.adjustsFontSizeToFitWidth = true
+        tempLabel.text = String(format: "%.0f℃", temp)
         
         addArrangedSubview(dayLabel)
         addArrangedSubview(iconImage)
