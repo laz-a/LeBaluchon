@@ -10,12 +10,12 @@ import Foundation
 class TranslateViewModel {
     private var translateService = TranslateService.shared
     var languages: [TranslateLanguages.Language]?
-    
+
     init() {}
     init(session: URLSession) {
         translateService = TranslateService(session: session)
     }
-    
+
     func getLanguages(completionHandler: @escaping(() throws -> ([TranslateLanguages.Language])) -> Void) {
         if let languages = languages {
             completionHandler({ return languages })
@@ -24,19 +24,22 @@ class TranslateViewModel {
                 do {
                     self.languages = try getLanguages()
                     completionHandler({ return self.languages! })
-                } catch  {
+                } catch {
                     completionHandler({ throw error })
                 }
             }
         }
     }
-    
-    func getTranslation(from: String, to: String, text: [String], completionHandler: @escaping(() throws -> [String]) -> Void) {
+
+    func getTranslation(from: String,
+                        to: String,
+                        text: [String],
+                        completionHandler: @escaping(() throws -> [String]) -> Void) {
         translateService.getTranslatedText(from: from, to: to, text: text) { getTranslation in
             do {
                 let translation = try getTranslation()
                 completionHandler({ return translation })
-            } catch  {
+            } catch {
                 completionHandler({ throw error })
             }
         }

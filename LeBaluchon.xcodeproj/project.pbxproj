@@ -20,6 +20,7 @@
 		6F18C2222906D41A00969459 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C2212906D41A00969459 /* ApiKey.swift */; };
 		6F18C2242906D48000969459 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C2232906D48000969459 /* Currency.swift */; };
 		6F18C2262906D4BD00969459 /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18C2252906D4BD00969459 /* CurrencyViewModel.swift */; };
+		6F40D7812918472700C64FF6 /* Weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F40D7802918472700C64FF6 /* Weather.json */; };
 		6F740A462907204400F89AD2 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F740A452907204400F89AD2 /* MockURLProtocol.swift */; };
 		6F740A482907206500F89AD2 /* ResponseDataFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F740A472907206500F89AD2 /* ResponseDataFake.swift */; };
 		6F740A4A290722B700F89AD2 /* CurrencyTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F740A49290722B700F89AD2 /* CurrencyTestCase.swift */; };
@@ -61,6 +62,7 @@
 		6F18C2212906D41A00969459 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		6F18C2232906D48000969459 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		6F18C2252906D4BD00969459 /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
+		6F40D7802918472700C64FF6 /* Weather.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Weather.json; sourceTree = "<group>"; };
 		6F740A452907204400F89AD2 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		6F740A472907206500F89AD2 /* ResponseDataFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDataFake.swift; sourceTree = "<group>"; };
 		6F740A49290722B700F89AD2 /* CurrencyTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTestCase.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				6F1668082916A661008F8F1E /* WeatherTestCase.swift */,
 				6F740A452907204400F89AD2 /* MockURLProtocol.swift */,
 				6F740A472907206500F89AD2 /* ResponseDataFake.swift */,
+				6F40D7802918472700C64FF6 /* Weather.json */,
 			);
 			path = LeBaluchonTests;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				6F18C1DC2906D02200969459 /* Sources */,
 				6F18C1DD2906D02200969459 /* Frameworks */,
 				6F18C1DE2906D02200969459 /* Resources */,
+				6F16680A2918153E008F8F1E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -290,10 +294,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F40D7812918472700C64FF6 /* Weather.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6F16680A2918153E008F8F1E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6F18C1DC2906D02200969459 /* Sources */ = {

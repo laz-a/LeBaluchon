@@ -9,19 +9,18 @@ import UIKit
 
 class CurrencyViewController: UIViewController {
     private let currencyModel = CurrencyViewModel()
-    
+
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var toCodeLabel: UILabel!
     @IBOutlet weak var toPickerView: UIPickerView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         toPickerView.isHidden = true
-        
         setEnableTextFields(false)
-        
+
         currencyModel.getSymbols { getSymbols in
             do {
                 let symbols = try getSymbols()
@@ -37,31 +36,31 @@ class CurrencyViewController: UIViewController {
             }
         }
     }
-    
+
     /*
     // MARK: - Navigation
     */
-    
+
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         fromTextField.resignFirstResponder()
     }
-    
+
     @IBAction func editFromTextField(_ sender: UITextField) {
         convert()
     }
-    
+
     private func displayAlertError(message: String) {
         let errorAlertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         errorAlertController.addAction(UIAlertAction(title: "Ok", style: .default))
         self.present(errorAlertController, animated: true)
     }
-    
+
     private func setEnableTextFields(_ value: Bool) {
         toTextField.backgroundColor = value ? .white : .lightText
         fromTextField.backgroundColor = value ? .white : .lightText
         fromTextField.isEnabled = value
     }
-    
+
     private func getToCode() -> String? {
         let toRow = toPickerView.selectedRow(inComponent: 0)
         if let toCode = currencyModel.symbols?[toRow] {
@@ -69,15 +68,15 @@ class CurrencyViewController: UIViewController {
         }
         return nil
     }
-    
+
     private func convert() {
         let from = "EUR"
-        
+
         guard let amountText = fromTextField.text, !amountText.isEmpty else {
             toTextField.text = ""
             return
         }
-        
+
         if let to = getToCode(), let amount = Double(amountText) {
             currencyModel.getConversion(from: from, to: to, amount: amount) { getResult in
                 do {
@@ -96,7 +95,7 @@ extension CurrencyViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if let availableCurrencies = currencyModel.symbols {
             return availableCurrencies.count
@@ -112,7 +111,7 @@ extension CurrencyViewController: UIPickerViewDelegate {
         }
         return nil
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if let to = getToCode() {
             self.toCodeLabel.text = to

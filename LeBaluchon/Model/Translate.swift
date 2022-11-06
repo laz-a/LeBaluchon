@@ -8,12 +8,12 @@
 import Foundation
 
 struct TranslateLanguages: Decodable {
-    
+
     struct Language: Decodable {
       let language: String
       let name: String
     }
-    
+
     enum RootKeys: String, CodingKey {
         case data
     }
@@ -25,9 +25,9 @@ struct TranslateLanguages: Decodable {
     enum LanguageKeys: String, CodingKey {
         case language, name
     }
-    
+
     let languages: [Language]
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RootKeys.self)
         let languagesContainer = try container.nestedContainer(keyedBy: LanguagesKeys.self, forKey: .data)
@@ -39,25 +39,25 @@ struct TranslateTranslation: Decodable {
     enum RootKeys: String, CodingKey {
         case data
     }
-    
+
     enum TranslationsKeys: String, CodingKey {
         case translations
     }
-    
+
     enum TranslationKeys: String, CodingKey {
         case translatedText
     }
-    
+
     struct TranslatedText: Decodable {
         let translatedText: String
     }
-    
+
     let translatedText: [String]
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RootKeys.self)
         let translationsContainer = try container.nestedContainer(keyedBy: TranslationsKeys.self, forKey: .data)
         let translatedText = try translationsContainer.decode([TranslatedText].self, forKey: .translations)
-        self.translatedText = translatedText.map{ $0.translatedText }
+        self.translatedText = translatedText.map { $0.translatedText }
     }
 }

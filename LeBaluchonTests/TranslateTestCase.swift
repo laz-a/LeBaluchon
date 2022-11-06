@@ -22,7 +22,7 @@ final class TranslateTestCase: XCTestCase {
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         translateModel.getLanguages { getLanguages in
             do {
-                let _ = try getLanguages()
+                _ = try getLanguages()
             } catch {
                 XCTAssertEqual(error as? AsyncError, AsyncError.response)
             }
@@ -30,13 +30,13 @@ final class TranslateTestCase: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
     }
-    
+
     func testGetLanguagesShouldPostFailedCallbackIfNoData() async {
         let translateModel = getTranslateViewModel(MockFailedCallbackIfNoData.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         translateModel.getLanguages { getLanguages in
             do {
-                let _ = try getLanguages()
+                _ = try getLanguages()
             } catch {
                 XCTAssertEqual(error as? AsyncError, AsyncError.data)
             }
@@ -44,13 +44,13 @@ final class TranslateTestCase: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
     }
-    
+
     func testGetLanguagesShouldPostFailedCallbackIfDecodeError() async {
         let translateModel = getTranslateViewModel(MockFailedCallbackIfDecodeError.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         translateModel.getLanguages { getLanguages in
             do {
-                let _ = try getLanguages()
+                _ = try getLanguages()
             } catch {
                 XCTAssertEqual(error as? AsyncError, AsyncError.decode)
             }
@@ -58,7 +58,7 @@ final class TranslateTestCase: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
     }
-    
+
     func testGetLanguagesShouldPostSuccess() async {
         let translateModel = getTranslateViewModel(MockTranslateLanguagesSuccess.self)
         XCTAssertNil(translateModel.languages)
@@ -76,13 +76,13 @@ final class TranslateTestCase: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
     }
-    
+
     func testGetTranslationShouldPostFailedCallbackIfError() async {
         let translateModel = getTranslateViewModel(MockFailedCallbackIfError.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         translateModel.getTranslation(from: "fr", to: "en", text: ["Bonjour !"]) { getTranslation in
             do {
-                let _ = try getTranslation()
+                _ = try getTranslation()
             } catch {
                 XCTAssertEqual(error as? AsyncError, AsyncError.response)
             }
@@ -96,7 +96,7 @@ final class TranslateTestCase: XCTestCase {
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         translateModel.getTranslation(from: "fr", to: "en", text: ["Bonjour !"]) { getTranslation in
             do {
-                let _ = try getTranslation()
+                _ = try getTranslation()
             } catch {
                 XCTAssertEqual(error as? AsyncError, AsyncError.data)
             }
@@ -110,7 +110,7 @@ final class TranslateTestCase: XCTestCase {
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         translateModel.getTranslation(from: "fr", to: "en", text: ["Bonjour !"]) { getTranslation in
             do {
-                let _ = try getTranslation()
+                _ = try getTranslation()
             } catch {
                 XCTAssertEqual(error as? AsyncError, AsyncError.decode)
             }
@@ -118,7 +118,7 @@ final class TranslateTestCase: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
     }
-    
+
     func testGetTranslationShouldPostSuccess() async {
         let translateModel = getTranslateViewModel(MockTranslateTranslationSuccess.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")

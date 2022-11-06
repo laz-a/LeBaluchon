@@ -14,10 +14,10 @@ class TranslateService {
     private static let url = "https://translation.googleapis.com/language/translate/v2"
     private static let apiKey = ApiKey.googleTranslate
     private static let target = "en"
-    
+
     private var task: URLSessionDataTask?
     private var session = URLSession.shared
-    
+
     init(session: URLSession) {
         self.session = session
     }
@@ -28,7 +28,7 @@ class TranslateService {
         let queryItems = [URLQueryItem(name: "key", value: TranslateService.apiKey),
                           URLQueryItem(name: "target", value: TranslateService.target)]
         requestLanguages.url?.append(queryItems: queryItems)
-        
+
         task?.cancel()
         task = session.dataTask(with: requestLanguages) { data, response, error in
             DispatchQueue.main.async {
@@ -50,7 +50,8 @@ class TranslateService {
         task?.resume()
     }
 
-    func getTranslatedText(from: String, to: String, text: [String], callback: @escaping(() throws -> [String]) -> Void) {
+    func getTranslatedText(from: String, to: String, text: [String],
+                           callback: @escaping(() throws -> [String]) -> Void) {
         let urlTranslate = URL(string: "\(TranslateService.url)")!
         var requestTranslate = URLRequest(url: urlTranslate)
         requestTranslate.httpMethod = "POST"
