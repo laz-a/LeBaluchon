@@ -76,7 +76,7 @@ class MockCurrencyFailedCallbackIfDataError: MockURLProtocol {
 class MockCurrencySuccess: MockURLProtocol {
     override func startLoading() {
         MockCurrencySuccess.requestHandler = { request in
-            return (ResponseDataFake.responseOk, ResponseDataFake.currencyServiceAvailableCurrencies)
+            return (ResponseDataFake.responseOk, ResponseDataFake.currencyServiceAvailableCurrenciesData)
         }
         super.startLoading()
     }
@@ -96,7 +96,7 @@ class MockCurrencyConvertSuccess: MockURLProtocol {
 class MockTranslateLanguagesSuccess: MockURLProtocol {
     override func startLoading() {
         MockTranslateLanguagesSuccess.requestHandler = { request in
-            return (ResponseDataFake.responseOk, ResponseDataFake.translateLanguages)
+            return (ResponseDataFake.responseOk, ResponseDataFake.translateServiceLanguagesData)
         }
         super.startLoading()
     }
@@ -105,7 +105,16 @@ class MockTranslateLanguagesSuccess: MockURLProtocol {
 class MockTranslateTranslationSuccess: MockURLProtocol {
     override func startLoading() {
         MockTranslateTranslationSuccess.requestHandler = { request in
-            return (ResponseDataFake.responseOk, ResponseDataFake.translateTranslation)
+            return (ResponseDataFake.responseOk, ResponseDataFake.translateServiceTranslationData)
+        }
+        super.startLoading()
+    }
+}
+
+class MockWeatherSuccess: MockURLProtocol {
+    override func startLoading() {
+        MockWeatherSuccess.requestHandler = { request in
+            return (ResponseDataFake.responseOk, ResponseDataFake.weatherServiceData)
         }
         super.startLoading()
     }

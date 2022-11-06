@@ -123,8 +123,8 @@ final class TranslateTestCase: XCTestCase {
         let translateModel = getTranslateViewModel(MockTranslateTranslationSuccess.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         translateModel.getTranslation(from: "fr", to: "en", text: ["Bonjour !"]) { getTranslation in
-            let trnaslation = try? getTranslation()
-            XCTAssertEqual(trnaslation, ["Good morning !"])
+            let translation = try? getTranslation()
+            XCTAssertEqual(translation, ["Good morning !"])
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)

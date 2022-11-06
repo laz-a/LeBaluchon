@@ -21,11 +21,6 @@ final class CurrencyTestCase: XCTestCase {
         let currencyModel = getCurrencyViewModel(MockFailedCallbackIfError.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getSymbols { getSymbols in
-            
-//            XCTAssertThrowsError(let trez = try getSymbols(), "Error incorrect expression") { error in
-//                XCTAssertEqual(error as? CurrencyService.AsyncError, CurrencyService.AsyncError.response)
-//            }
-            
             do {
                 let _ = try getSymbols()
             } catch {
