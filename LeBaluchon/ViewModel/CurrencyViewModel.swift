@@ -9,6 +9,8 @@ import Foundation
 
 class CurrencyViewModel {
     private var currencyService = CurrencyService.shared
+    let defaultFromCurrency = "EUR"
+    let defaultToCurrency = "USD"
     var symbols: [CurrencySymbols.Symbol]?
     private var conversionsRates = Set<ConversionRate>()
 
@@ -32,8 +34,7 @@ class CurrencyViewModel {
         }
     }
 
-    func getConversion(from: String, to: String, amount: Double,
-                       completionHandler: @escaping(() throws -> Double) -> Void) {
+    func getConversion(from: String, to: String, amount: Double, completionHandler: @escaping(() throws -> Double) -> Void) {
         if let conversionRate = conversionsRates.first(where: { $0.from == from && $0.to == to }) {
             completionHandler({ return amount * conversionRate.rate })
         } else {

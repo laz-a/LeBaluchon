@@ -31,10 +31,7 @@ class TranslateViewModel {
         }
     }
 
-    func getTranslation(from: String,
-                        to: String,
-                        text: [String],
-                        completionHandler: @escaping(() throws -> [String]) -> Void) {
+    func getTranslation(from: String, to: String, text: [String], completionHandler: @escaping(() throws -> [String]) -> Void) {
         translateService.getTranslatedText(from: from, to: to, text: text) { getTranslation in
             do {
                 let translation = try getTranslation()
