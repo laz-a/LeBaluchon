@@ -12,57 +12,68 @@ class WeatherViewModel {
     private var weatherService = WeatherService.shared
     private let geocoder = CLGeocoder()
 
+    private let queue = DispatchQueue(label: "weatherService", attributes: .concurrent)
+    private let semaphore = DispatchSemaphore(value: 1)
+
     init() {}
     init(session: URLSession) {
         weatherService = WeatherService(session: session)
     }
 
-    func getWeatherForLocation(latitude: Double,
-                               longitude: Double,
-                               completionHandler: @escaping(() throws -> (location: Location,
-                                                                          weather: Weather)) -> Void) {
-        getLocation(latitude: latitude, longitude: longitude) { getLocation in
-            do {
-                let location = try getLocation()
-                self.getWeather(latitude: location.coordinate.coordinate.latitude,
-                                longitude: location.coordinate.coordinate.longitude) { getWeather in
-                    do {
-                        let weather = try getWeather()
-                        completionHandler({ return (location: location, weather: weather) })
-                    } catch {
-                        completionHandler({ throw error })
+    func getWeatherForLocation(latitude: Double, longitude: Double, completionHandler: @escaping(() throws -> (location: Location, weather: Weather)) -> Void) {
+        queue.async {
+            self.semaphore.wait()
+            self.getLocation(latitude: latitude, longitude: longitude) { getLocation in
+                do {
+                    let location = try getLocation()
+                    self.getWeather(latitude: location.coordinate.coordinate.latitude, longitude: location.coordinate.coordinate.longitude) { getWeather in
+                        do {
+                            let weather = try getWeather()
+                            completionHandler({ return (location: location, weather: weather) })
+                            print("getWeatherForLocation(latitude: Double, longitude: Double")
+                        } catch {
+                            completionHandler({ throw error })
+                            print("ERROR :: getWeatherForLocation(latitude: Double, longitude: Double")
+                        }
+                        self.semaphore.signal()
+                        print("getWeatherForLocation(latitude: Double, longitude: Double A LA FIN")
                     }
+                } catch {
+                    completionHandler({ throw error })
+                    self.semaphore.signal()
                 }
-            } catch {
-                completionHandler({ throw error })
             }
         }
     }
 
-    func getWeatherForLocation(location: String,
-                               completionHandler: @escaping(() throws -> (location: Location,
-                                                                          weather: Weather)) -> Void) {
-        getLocation(from: location) { getLocation in
-            do {
-                let location = try getLocation()
-                self.getWeather(latitude: location.coordinate.coordinate.latitude,
-                                longitude: location.coordinate.coordinate.longitude) { getWeather in
-                    do {
-                        let weather = try getWeather()
-                        completionHandler({ return (location: location, weather: weather) })
-                    } catch {
-                        completionHandler({ throw error })
+    func getWeatherForLocation(location: String, completionHandler: @escaping(() throws -> (location: Location, weather: Weather)) -> Void) {
+        queue.async {
+            self.semaphore.wait()
+            self.getLocation(from: location) { getLocation in
+                do {
+                    let location = try getLocation()
+                    self.getWeather(latitude: location.coordinate.coordinate.latitude, longitude: location.coordinate.coordinate.longitude) { getWeather in
+                        do {
+                            let weather = try getWeather()
+                            completionHandler({ return (location: location, weather: weather) })
+                            print("getWeatherForLocation(location: String")
+                        } catch {
+                            completionHandler({ throw error })
+                            print("ERROR :: getWeatherForLocation(location: String")
+                        }
+                        print("getWeatherForLocation(location: String A LA FIN")
+                        self.semaphore.signal()
                     }
+                } catch {
+                    completionHandler({ throw error })
+                    print("ERROR :: getWeatherForLocation(location: String  throw error")
+                    self.semaphore.signal()
                 }
-            } catch {
-                completionHandler({ throw error })
             }
         }
     }
 
-    private func getWeather(latitude: Double,
-                            longitude: Double,
-                            completionHandler: @escaping(() throws -> Weather) -> Void) {
+    private func getWeather(latitude: Double, longitude: Double, completionHandler: @escaping(() throws -> Weather) -> Void) {
         weatherService.getWeather(latitude: latitude, longitude: longitude) { getWeather in
             do {
                 let weather = try getWeather()
@@ -73,9 +84,7 @@ class WeatherViewModel {
         }
     }
 
-    private func getLocation(latitude: Double,
-                             longitude: Double,
-                             completionHandler: @escaping(() throws -> Location) -> Void) {
+    private func getLocation(latitude: Double, longitude: Double, completionHandler: @escaping(() throws -> Location) -> Void) {
         let location = CLLocation(latitude: latitude, longitude: longitude)
         geocoder.reverseGeocodeLocation(location) { placemarks, _ in
             DispatchQueue.main.async {
@@ -99,10 +108,7 @@ class WeatherViewModel {
                     return
                 }
                 if let city = placemark.locality ?? placemark.administrativeArea, let country = placemark.country {
-                    let location = Location(city: city,
-                                            country: country,
-                                            coordinate: CLLocation(latitude: coordinate.latitude,
-                                                                   longitude: coordinate.longitude))
+                    let location = Location(city: city, country: country, coordinate: CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
                     completionHandler({ return location })
                 }
             }
