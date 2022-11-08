@@ -79,13 +79,11 @@ final class CurrencyTestCase: XCTestCase {
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getSymbols { getSymbols in
             if let symbols = try? getSymbols() {
-                XCTAssertEqual(symbols.map { $0.country },
-                               ["Bhutanese Ngultrum", "Bitcoin", "Botswanan Pula", "Euro", "United States Dollar"])
+                XCTAssertEqual(symbols.map { $0.country }, ["Bhutanese Ngultrum", "Bitcoin", "Botswanan Pula", "Euro", "United States Dollar"])
             }
             currencyModel.getSymbols { getSymbols in
                 if let symbols = try? getSymbols() {
-                    XCTAssertEqual(symbols.map { $0.country },
-                                   ["Bhutanese Ngultrum", "Bitcoin", "Botswanan Pula", "Euro", "United States Dollar"])
+                    XCTAssertEqual(symbols.map { $0.country }, ["Bhutanese Ngultrum", "Bitcoin", "Botswanan Pula", "Euro", "United States Dollar"])
                 }
             }
             expectation.fulfill()

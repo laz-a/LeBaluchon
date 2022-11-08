@@ -8,11 +8,9 @@
 import Foundation
 
 class ResponseDataFake {
-    static let responseOk = HTTPURLResponse(url: URL(string: "http://openclassrooms.com")!,
-                                            statusCode: 200, httpVersion: nil, headerFields: nil)!
+    static let responseOk = HTTPURLResponse(url: URL(string: "http://openclassrooms.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
 
-    static let responseNok = HTTPURLResponse(url: URL(string: "http://openclassrooms.com")!,
-                                             statusCode: 404, httpVersion: nil, headerFields: nil)!
+    static let responseNok = HTTPURLResponse(url: URL(string: "http://openclassrooms.com")!, statusCode: 404, httpVersion: nil, headerFields: nil)!
 
     class FakeError: Error {}
     static let error = FakeError()
@@ -20,7 +18,6 @@ class ResponseDataFake {
     static let incorrectData = "erreur".data(using: .utf8)!
 
 // MARK: - Currency
-
     static let currencyServiceDataError = """
     {
         "success": false,
@@ -63,7 +60,6 @@ class ResponseDataFake {
     """.data(using: .utf8)!
 
 // MARK: - Translate
-
     static let translateServiceLanguagesData = """
     {
         "data": {

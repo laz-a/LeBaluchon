@@ -20,7 +20,6 @@ final class WeatherTestCase: XCTestCase {
     func testGetWeatherForCoordinateShouldPostFailedCallbackIfError() async {
         let weatherModel = getWeatherViewModel(MockFailedCallbackIfError.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-
         weatherModel.getWeatherForLocation(latitude: 48.85, longitude: 2.35) { getWeather in
             do {
                 _ = try getWeather()
@@ -35,7 +34,6 @@ final class WeatherTestCase: XCTestCase {
     func testGetWeatherForCoordinateShouldPostFailedCallbackIfNoData() async {
         let weatherModel = getWeatherViewModel(MockFailedCallbackIfNoData.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-
         weatherModel.getWeatherForLocation(latitude: 48.85, longitude: 2.35) { getWeather in
             do {
                 _ = try getWeather()
@@ -50,7 +48,6 @@ final class WeatherTestCase: XCTestCase {
     func testGetWeatherForCoordinateShouldPostFailedCallbackIfDecodeError() async {
         let weatherModel = getWeatherViewModel(MockFailedCallbackIfDecodeError.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-
         weatherModel.getWeatherForLocation(latitude: 48.85, longitude: 2.35) { getWeather in
             do {
                 _ = try getWeather()
@@ -65,7 +62,6 @@ final class WeatherTestCase: XCTestCase {
     func testGetWeatherForLocationShouldPostFailedCallbackIfDecodeError() async {
         let weatherModel = getWeatherViewModel(MockFailedCallbackIfDecodeError.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-
         weatherModel.getWeatherForLocation(location: "Paris") { getWeather in
             do {
                 _ = try getWeather()
@@ -79,7 +75,6 @@ final class WeatherTestCase: XCTestCase {
 
     func testGetWeatherForLocationShouldPostFailedCallbackIfLocationError() async {
         let weatherModel = getWeatherViewModel(MockFailedCallbackIfError.self)
-
         weatherModel.getWeatherForLocation(location: "hjdfbjkfhbjhf") { getWeather in
             do {
                 _ = try getWeather()
@@ -91,7 +86,6 @@ final class WeatherTestCase: XCTestCase {
 
     func testGetWeatherForLocationShouldPostFailedCallbackIfCoordinateError() async {
         let weatherModel = getWeatherViewModel(MockFailedCallbackIfError.self)
-
         weatherModel.getWeatherForLocation(latitude: 222.12, longitude: 333.13) { getWeather in
             do {
                 _ = try getWeather()
@@ -104,13 +98,10 @@ final class WeatherTestCase: XCTestCase {
     func testGetWeatherForCoordinateShouldPostSuccess() async {
         let weatherModel = getWeatherViewModel(MockWeatherSuccess.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-
         weatherModel.getWeatherForLocation(latitude: 48.85, longitude: 2.35) { getWeather in
             let locationWeather = try? getWeather()
-
             XCTAssertEqual(locationWeather?.location.city, "Paris")
             XCTAssertEqual(locationWeather?.weather.current.temp, 11.94)
-
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1)
@@ -119,13 +110,10 @@ final class WeatherTestCase: XCTestCase {
     func testGetWeatherForLocationShouldPostSuccess() async {
         let weatherModel = getWeatherViewModel(MockWeatherSuccess.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-
         weatherModel.getWeatherForLocation(location: "Paris") { getWeather in
             let locationWeather = try? getWeather()
-
             XCTAssertEqual(locationWeather?.location.city, "Paris")
             XCTAssertEqual(locationWeather?.weather.current.temp, 11.94)
-
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1)
