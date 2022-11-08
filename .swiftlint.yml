@@ -1,5 +1,6 @@
 disabled_rules:
   - identifier_name
+line_length: 200
 nesting:
   type_level:
     warning: 3
@@ -7,3 +8,6 @@ nesting:
   statement_level:
     warning: 5
     error: 10
+cyclomatic_complexity:
+  warning: 25
+  error: 50
