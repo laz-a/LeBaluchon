@@ -81,49 +81,27 @@ struct Weather: Decodable {
 
             let code = try container.decode(String.self, forKey: .icon)
 
-            let trtt = [
-                "01d": "sun.max",
-                "01n": "moon",
-                "02d": "cloud.sun",
-                "02n": "cloud.moon",
-                "03d": "smoke",
-                "03n": "smoke.fill",
-                "04d": "cloud.fill",
-                "04n": "cloud.fill",
-                "09d": "cloud.heavyrain",
-                "09n": "cloud.heavyrain.fill",
-                "10d": "cloud.sun.rain",
-                "10n": "cloud.moon.rain",
-                "11d": "cloud.bolt",
-                "11n": "cloud.bolt.fill",
-                "13d": "cloud.snow",
-                "13n": "cloud.snow.fill",
-                "50d": "cloud.fog",
-                "50n": "cloud.fog.fill"
-            ]
-            icon = trtt[code] ?? ""
-
-//            switch code {
-//            case "01d": icon = "sun.max"
-//            case "01n": icon = "moon"
-//            case "02d": icon = "cloud.sun"
-//            case "02n": icon = "cloud.moon"
-//            case "03d": icon = "smoke"
-//            case "03n": icon = "smoke.fill"
-//            case "04d": icon = "cloud.fill"
-//            case "04n": icon = "cloud.fill"
-//            case "09d": icon = "cloud.heavyrain"
-//            case "09n": icon = "cloud.heavyrain.fill"
-//            case "10d": icon = "cloud.sun.rain"
-//            case "10n": icon = "cloud.moon.rain"
-//            case "11d": icon = "cloud.bolt"
-//            case "11n": icon = "cloud.bolt.fill"
-//            case "13d": icon = "cloud.snow"
-//            case "13n": icon = "cloud.snow.fill"
-//            case "50d": icon = "cloud.fog"
-//            case "50n": icon = "cloud.fog.fill"
-//            default: icon = ""
-//            }
+            switch code {
+            case "01d": icon = "sun.max"
+            case "01n": icon = "moon"
+            case "02d": icon = "cloud.sun"
+            case "02n": icon = "cloud.moon"
+            case "03d": icon = "smoke"
+            case "03n": icon = "smoke.fill"
+            case "04d": icon = "cloud.fill"
+            case "04n": icon = "cloud.fill"
+            case "09d": icon = "cloud.heavyrain"
+            case "09n": icon = "cloud.heavyrain.fill"
+            case "10d": icon = "cloud.sun.rain"
+            case "10n": icon = "cloud.moon.rain"
+            case "11d": icon = "cloud.bolt"
+            case "11n": icon = "cloud.bolt.fill"
+            case "13d": icon = "cloud.snow"
+            case "13n": icon = "cloud.snow.fill"
+            case "50d": icon = "cloud.fog"
+            case "50n": icon = "cloud.fog.fill"
+            default: icon = "ellipsis"
+            }
         }
     }
 
