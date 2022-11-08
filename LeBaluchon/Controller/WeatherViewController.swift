@@ -33,6 +33,8 @@ class WeatherViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
+
+        weatherForLocation("New York")
     }
 
     /*
@@ -49,12 +51,6 @@ class WeatherViewController: UIViewController {
             return
         }
         weatherForLocation(searchLocation)
-    }
-
-    private func displayAlertError(message: String) {
-        let errorAlertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        errorAlertController.addAction(UIAlertAction(title: "Ok", style: .default))
-        self.present(errorAlertController, animated: true)
     }
 
     private func weatherForLocation(_ location: String) {
@@ -81,9 +77,7 @@ class WeatherViewController: UIViewController {
                 daily.forEach { day in
                     let myDate = Date(timeIntervalSince1970: TimeInterval(day.dt))
                     if let firstWeather = day.weather.first {
-                        let dayWeatherView = DailyWeatherStackView(day: myDate,
-                                                                   temp: day.temp.day,
-                                                                   icon: firstWeather.icon)
+                        let dayWeatherView = DailyWeatherStackView(day: myDate, temp: day.temp.day, icon: firstWeather.icon)
                         self.dailyWeatherStackView.addArrangedSubview(dayWeatherView)
                     }
                 }

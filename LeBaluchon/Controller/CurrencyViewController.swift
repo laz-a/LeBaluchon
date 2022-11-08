@@ -12,6 +12,7 @@ class CurrencyViewController: UIViewController {
 
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var toTextField: UITextField!
+    @IBOutlet weak var fromCodeLabel: UILabel!
     @IBOutlet weak var toCodeLabel: UILabel!
     @IBOutlet weak var toPickerView: UIPickerView!
 
@@ -25,7 +26,8 @@ class CurrencyViewController: UIViewController {
             do {
                 let symbols = try getSymbols()
                 self.toPickerView.reloadAllComponents()
-                if let usdIndex = symbols.firstIndex(where: { $0.code == "USD" }) {
+                self.fromCodeLabel.text = self.currencyModel.defaultFromCurrency
+                if let usdIndex = symbols.firstIndex(where: { $0.code == self.currencyModel.defaultToCurrency }) {
                     self.toPickerView.selectRow(usdIndex, inComponent: 0, animated: false)
                     self.pickerView(self.toPickerView, didSelectRow: usdIndex, inComponent: 0)
                 }
@@ -49,12 +51,6 @@ class CurrencyViewController: UIViewController {
         convert()
     }
 
-    private func displayAlertError(message: String) {
-        let errorAlertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        errorAlertController.addAction(UIAlertAction(title: "Ok", style: .default))
-        self.present(errorAlertController, animated: true)
-    }
-
     private func setEnableTextFields(_ value: Bool) {
         toTextField.backgroundColor = value ? .white : .lightText
         fromTextField.backgroundColor = value ? .white : .lightText
@@ -70,7 +66,7 @@ class CurrencyViewController: UIViewController {
     }
 
     private func convert() {
-        let from = "EUR"
+        let from = currencyModel.defaultFromCurrency
 
         guard let amountText = fromTextField.text, !amountText.isEmpty else {
             toTextField.text = ""

@@ -34,15 +34,11 @@ class TranslateViewController: UIViewController {
                 if let cuurentLanguage = Locale.current.language.languageCode?.identifier {
                     if let currentLanguageIndex = languages.firstIndex(where: { $0.language == cuurentLanguage }) {
                         self.selectLanguagePickerView.selectRow(currentLanguageIndex, inComponent: 0, animated: false)
-                        self.pickerView(self.selectLanguagePickerView,
-                                        didSelectRow: currentLanguageIndex,
-                                        inComponent: 0)
+                        self.pickerView(self.selectLanguagePickerView, didSelectRow: currentLanguageIndex, inComponent: 0)
                     }
                     if let enIndex = languages.firstIndex(where: { $0.language == "en" }) {
                         self.selectLanguagePickerView.selectRow(enIndex, inComponent: 1, animated: false)
-                        self.pickerView(self.selectLanguagePickerView,
-                                        didSelectRow: enIndex,
-                                        inComponent: 1)
+                        self.pickerView(self.selectLanguagePickerView, didSelectRow: enIndex, inComponent: 1)
                     }
                     self.setEnableButtons(true)
                 }
@@ -104,12 +100,6 @@ class TranslateViewController: UIViewController {
                 }
             }
         }
-    }
-
-    private func displayAlertError(message: String) {
-        let errorAlertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        errorAlertController.addAction(UIAlertAction(title: "Ok", style: .default))
-        self.present(errorAlertController, animated: true)
     }
 
     private func setTranslate() {
