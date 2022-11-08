@@ -50,8 +50,7 @@ class TranslateService {
         task?.resume()
     }
 
-    func getTranslatedText(from: String, to: String, text: [String],
-                           callback: @escaping(() throws -> [String]) -> Void) {
+    func getTranslatedText(from: String, to: String, text: [String], callback: @escaping(() throws -> [String]) -> Void) {
         let urlTranslate = URL(string: "\(TranslateService.url)")!
         var requestTranslate = URLRequest(url: urlTranslate)
         requestTranslate.httpMethod = "POST"
