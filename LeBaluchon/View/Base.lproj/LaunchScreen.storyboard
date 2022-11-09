@@ -16,24 +16,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFill" image="translate-white" translatesAutoresizingMaskIntoConstraints="NO" id="hEV-WG-qbo">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" image="currency-white" translatesAutoresizingMaskIntoConstraints="NO" id="KVq-C4-Aap">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFill" image="cloud-white" translatesAutoresizingMaskIntoConstraints="NO" id="ElR-6u-6i7">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="baluchon" translatesAutoresizingMaskIntoConstraints="NO" id="xhR-cS-xBc">
+                                <rect key="frame" x="125" y="310.66666666666669" width="265" height="223.00000000000006"/>
+                                <color key="tintColor" systemColor="systemGray2Color"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Le Baluchon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxM-fZ-dON">
                                 <rect key="frame" x="61.666666666666657" y="647" width="267" height="63"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="52"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="baluchon" translatesAutoresizingMaskIntoConstraints="NO" id="xhR-cS-xBc">
-                                <rect key="frame" x="125" y="310.66666666666669" width="265" height="223.00000000000006"/>
-                                <color key="tintColor" systemColor="systemGray2Color"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.73333333333333328" green="0.83529411764705885" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="FxM-fZ-dON" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="0XR-eS-ylK"/>
+                            <constraint firstItem="hEV-WG-qbo" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="2CR-5n-Nol"/>
+                            <constraint firstItem="KVq-C4-Aap" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="3WS-j3-zu3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FxM-fZ-dON" secondAttribute="bottom" constant="100" id="4bC-3u-kxq"/>
+                            <constraint firstItem="KVq-C4-Aap" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="81U-Jg-evi"/>
                             <constraint firstItem="xhR-cS-xBc" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="9cK-wA-8kB"/>
+                            <constraint firstAttribute="bottom" secondItem="KVq-C4-Aap" secondAttribute="bottom" id="B6w-f1-hrd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xhR-cS-xBc" secondAttribute="trailing" id="CIZ-W0-fQW"/>
+                            <constraint firstItem="ElR-6u-6i7" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="GYT-YT-TaT"/>
+                            <constraint firstAttribute="bottom" secondItem="hEV-WG-qbo" secondAttribute="bottom" id="HFB-Hw-hQh"/>
+                            <constraint firstAttribute="trailing" secondItem="ElR-6u-6i7" secondAttribute="trailing" id="SKL-gU-jaJ"/>
+                            <constraint firstItem="hEV-WG-qbo" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Vo0-vS-C2t"/>
+                            <constraint firstItem="ElR-6u-6i7" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ZJN-5P-d7v"/>
+                            <constraint firstAttribute="bottom" secondItem="ElR-6u-6i7" secondAttribute="bottom" id="sh0-hO-I1c"/>
+                            <constraint firstAttribute="trailing" secondItem="KVq-C4-Aap" secondAttribute="trailing" id="u3h-Ls-3ni"/>
+                            <constraint firstAttribute="trailing" secondItem="hEV-WG-qbo" secondAttribute="trailing" id="uLf-uI-dOo"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -44,6 +65,9 @@
     </scenes>
     <resources>
         <image name="baluchon" width="265" height="223"/>
+        <image name="cloud-white" width="640" height="1260"/>
+        <image name="currency-white" width="640" height="1260"/>
+        <image name="translate-white" width="640" height="1260"/>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

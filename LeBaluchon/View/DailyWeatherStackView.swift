@@ -28,7 +28,7 @@ class DailyWeatherStackView: UIStackView {
 
         let iconImage = UIImageView()
         iconImage.contentMode = .scaleAspectFit
-        iconImage.tintColor = .black
+        iconImage.tintColor = .white
         iconImage.image = UIImage(systemName: icon)
 
         let tempLabel = UILabel()

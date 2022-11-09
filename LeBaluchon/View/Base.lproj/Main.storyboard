@@ -37,6 +37,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFit" image="currency-white" translatesAutoresizingMaskIntoConstraints="NO" id="Evz-ho-OdD">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="761"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Ks1-Pb-Pce">
                                 <rect key="frame" x="10" y="77" width="370" height="393"/>
                                 <subviews>
@@ -103,12 +106,16 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qAC-iT-0l9"/>
-                        <color key="backgroundColor" red="0.63137254901960782" green="0.70196078431372544" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.56153168733161274" green="0.81960784313725488" blue="0.64925085429478679" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Ks1-Pb-Pce" firstAttribute="leading" secondItem="W8m-Zw-Hig" secondAttribute="leading" constant="10" id="Ggo-ne-3U2"/>
+                            <constraint firstItem="Evz-ho-OdD" firstAttribute="leading" secondItem="qAC-iT-0l9" secondAttribute="leading" id="Isi-ck-ykL"/>
                             <constraint firstItem="Ks1-Pb-Pce" firstAttribute="top" secondItem="qAC-iT-0l9" secondAttribute="top" constant="30" id="PXW-wn-Yjz"/>
                             <constraint firstItem="qAC-iT-0l9" firstAttribute="trailing" secondItem="Ks1-Pb-Pce" secondAttribute="trailing" constant="10" id="cVi-MU-RMG"/>
+                            <constraint firstAttribute="trailing" secondItem="Evz-ho-OdD" secondAttribute="trailing" id="cuX-FP-xo1"/>
+                            <constraint firstItem="qAC-iT-0l9" firstAttribute="bottom" secondItem="Evz-ho-OdD" secondAttribute="bottom" id="gpj-eh-aVS"/>
+                            <constraint firstItem="Evz-ho-OdD" firstAttribute="top" secondItem="W8m-Zw-Hig" secondAttribute="top" id="yae-us-jU6"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="O0A-zr-qOQ" appends="YES" id="LRN-xp-LiH"/>
@@ -140,6 +147,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFit" image="translate-white" translatesAutoresizingMaskIntoConstraints="NO" id="VjN-iT-oIQ">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="761"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HLj-au-V3m">
                                 <rect key="frame" x="10" y="77" width="370" height="674"/>
                                 <subviews>
@@ -252,7 +262,11 @@ Moi, je vais bien et toi ?
                             <constraint firstItem="HLj-au-V3m" firstAttribute="leading" secondItem="ElV-RB-MhJ" secondAttribute="leading" constant="10" id="CeW-0I-Ibw"/>
                             <constraint firstItem="HLj-au-V3m" firstAttribute="top" secondItem="ElV-RB-MhJ" secondAttribute="top" constant="30" id="IkA-S8-sdQ"/>
                             <constraint firstItem="YG5-rt-pnk" firstAttribute="top" secondItem="YmB-cS-v8o" secondAttribute="top" id="KZE-nd-dC4"/>
+                            <constraint firstItem="VjN-iT-oIQ" firstAttribute="top" secondItem="2wQ-on-ijz" secondAttribute="top" id="OvH-0e-NNx"/>
+                            <constraint firstAttribute="trailing" secondItem="VjN-iT-oIQ" secondAttribute="trailing" id="V2i-3a-s7t"/>
                             <constraint firstItem="YG5-rt-pnk" firstAttribute="trailing" secondItem="ElV-RB-MhJ" secondAttribute="trailing" id="bPl-Ps-KtB"/>
+                            <constraint firstItem="VjN-iT-oIQ" firstAttribute="leading" secondItem="ElV-RB-MhJ" secondAttribute="leading" id="i3c-wd-rra"/>
+                            <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="VjN-iT-oIQ" secondAttribute="bottom" id="izc-PV-gVC"/>
                             <constraint firstItem="YG5-rt-pnk" firstAttribute="leading" secondItem="ElV-RB-MhJ" secondAttribute="leading" id="kXa-NX-YBA"/>
                             <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="HLj-au-V3m" secondAttribute="bottom" constant="10" id="nmI-C3-U4U"/>
                             <constraint firstAttribute="trailing" secondItem="HLj-au-V3m" secondAttribute="trailing" constant="10" id="skk-U4-Ecp"/>
@@ -289,6 +303,9 @@ Moi, je vais bien et toi ?
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFit" image="cloud-white" translatesAutoresizingMaskIntoConstraints="NO" id="KCp-YP-pue">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="761"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="dZG-3a-Jlb">
                                 <rect key="frame" x="10" y="77" width="370" height="522"/>
                                 <subviews>
@@ -303,7 +320,7 @@ Moi, je vais bien et toi ?
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="ellipsis" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4eR-5K-bpF">
                                                 <rect key="frame" x="0.0" y="7.6666666666666643" width="100" height="84.999999999999986"/>
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="4eR-5K-bpF" secondAttribute="height" multiplier="1:1" id="Fxh-9w-sLS"/>
                                                 </constraints>
@@ -346,14 +363,17 @@ Moi, je vais bien et toi ?
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New York" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dvK-D5-0Xb">
                                                 <rect key="frame" x="0.0" y="0.0" width="331" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="search"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="lvF-1s-EjR" id="0kf-qW-G7D"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4y-kA-UmG">
                                                 <rect key="frame" x="336" y="0.0" width="34" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="e4y-kA-UmG" secondAttribute="height" multiplier="1:1" id="Nuf-Zy-s4F"/>
                                                 </constraints>
-                                                <color key="tintColor" red="0.50196078430000002" green="0.40784313729999999" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" red="0.09250679817373153" green="0.71397813547465372" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain">
                                                     <backgroundConfiguration key="background" image="location.fill" catalog="system"/>
@@ -369,7 +389,7 @@ Moi, je vais bien et toi ?
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="ellipsis" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gNc-p7-kek">
                                                 <rect key="frame" x="0.0" y="7.6666666666666643" width="100" height="84.999999999999986"/>
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="gNc-p7-kek" secondAttribute="height" multiplier="1:1" id="EEO-NC-fSy"/>
                                                 </constraints>
@@ -414,11 +434,15 @@ Moi, je vais bien et toi ?
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nTs-0N-uzB"/>
-                        <color key="backgroundColor" red="0.63137254899999995" green="0.70196078429999997" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.76470588235294112" green="0.93333333333333335" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="nTs-0N-uzB" firstAttribute="trailing" secondItem="KCp-YP-pue" secondAttribute="trailing" id="1Af-Hw-dj4"/>
                             <constraint firstItem="dZG-3a-Jlb" firstAttribute="top" secondItem="nTs-0N-uzB" secondAttribute="top" constant="30" id="2St-B1-cJh"/>
+                            <constraint firstItem="KCp-YP-pue" firstAttribute="leading" secondItem="XUW-pv-OMM" secondAttribute="leading" id="HFc-fg-cib"/>
+                            <constraint firstItem="KCp-YP-pue" firstAttribute="top" secondItem="XUW-pv-OMM" secondAttribute="top" id="g2j-YI-Qy8"/>
                             <constraint firstItem="dZG-3a-Jlb" firstAttribute="leading" secondItem="XUW-pv-OMM" secondAttribute="leading" constant="10" id="gYh-gN-jsM"/>
+                            <constraint firstItem="nTs-0N-uzB" firstAttribute="bottom" secondItem="KCp-YP-pue" secondAttribute="bottom" id="ong-UK-AZh"/>
                             <constraint firstItem="nTs-0N-uzB" firstAttribute="trailing" secondItem="dZG-3a-Jlb" secondAttribute="trailing" constant="10" id="qC5-0O-Mdb"/>
                         </constraints>
                         <connections>
@@ -451,10 +475,13 @@ Moi, je vais bien et toi ?
     </scenes>
     <resources>
         <image name="arrow.left.arrow.right.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="cloud-white" width="640" height="1260"/>
         <image name="currency" width="25" height="25"/>
+        <image name="currency-white" width="640" height="1260"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="location.fill" catalog="system" width="128" height="119"/>
         <image name="translate" width="25" height="25"/>
+        <image name="translate-white" width="640" height="1260"/>
         <image name="weather" width="25" height="25"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

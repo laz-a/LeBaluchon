@@ -30,13 +30,10 @@ class WeatherViewModel {
                         do {
                             let weather = try getWeather()
                             completionHandler({ return (location: location, weather: weather) })
-                            print("getWeatherForLocation(latitude: Double, longitude: Double")
                         } catch {
                             completionHandler({ throw error })
-                            print("ERROR :: getWeatherForLocation(latitude: Double, longitude: Double")
                         }
                         self.semaphore.signal()
-                        print("getWeatherForLocation(latitude: Double, longitude: Double A LA FIN")
                     }
                 } catch {
                     completionHandler({ throw error })
@@ -56,17 +53,13 @@ class WeatherViewModel {
                         do {
                             let weather = try getWeather()
                             completionHandler({ return (location: location, weather: weather) })
-                            print("getWeatherForLocation(location: String")
                         } catch {
                             completionHandler({ throw error })
-                            print("ERROR :: getWeatherForLocation(location: String")
                         }
-                        print("getWeatherForLocation(location: String A LA FIN")
                         self.semaphore.signal()
                     }
                 } catch {
                     completionHandler({ throw error })
-                    print("ERROR :: getWeatherForLocation(location: String  throw error")
                     self.semaphore.signal()
                 }
             }
