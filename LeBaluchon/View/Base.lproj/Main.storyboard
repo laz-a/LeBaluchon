@@ -186,7 +186,7 @@
                                                     <imageReference key="backgroundImage" image="arrow.left.arrow.right.circle.fill" catalog="system" symbolScale="default" renderingMode="original"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="tappedSwapLanguageButton:" destination="0KM-Zz-YN8" eventType="touchUpInside" id="DM7-Wg-4Lv"/>
+                                                    <action selector="tappedSwapLanguagesButton:" destination="0KM-Zz-YN8" eventType="touchUpInside" id="szu-5M-oBw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73I-3L-JIf">
@@ -246,7 +246,7 @@ Moi, je vais bien et toi ?
                                 </constraints>
                             </stackView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YG5-rt-pnk">
-                                <rect key="frame" x="0.0" y="511.66666666666669" width="390" height="249.33333333333331"/>
+                                <rect key="frame" x="10" y="511.66666666666669" width="370" height="249.33333333333331"/>
                                 <color key="backgroundColor" red="0.50196078430000002" green="0.40784313729999999" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="0KM-Zz-YN8" id="26w-2K-ceM"/>
@@ -264,10 +264,10 @@ Moi, je vais bien et toi ?
                             <constraint firstItem="YG5-rt-pnk" firstAttribute="top" secondItem="YmB-cS-v8o" secondAttribute="top" id="KZE-nd-dC4"/>
                             <constraint firstItem="VjN-iT-oIQ" firstAttribute="top" secondItem="2wQ-on-ijz" secondAttribute="top" id="OvH-0e-NNx"/>
                             <constraint firstAttribute="trailing" secondItem="VjN-iT-oIQ" secondAttribute="trailing" id="V2i-3a-s7t"/>
-                            <constraint firstItem="YG5-rt-pnk" firstAttribute="trailing" secondItem="ElV-RB-MhJ" secondAttribute="trailing" id="bPl-Ps-KtB"/>
                             <constraint firstItem="VjN-iT-oIQ" firstAttribute="leading" secondItem="ElV-RB-MhJ" secondAttribute="leading" id="i3c-wd-rra"/>
                             <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="VjN-iT-oIQ" secondAttribute="bottom" id="izc-PV-gVC"/>
-                            <constraint firstItem="YG5-rt-pnk" firstAttribute="leading" secondItem="ElV-RB-MhJ" secondAttribute="leading" id="kXa-NX-YBA"/>
+                            <constraint firstItem="YG5-rt-pnk" firstAttribute="leading" secondItem="ElV-RB-MhJ" secondAttribute="leading" constant="10" id="kKE-RP-R2r"/>
+                            <constraint firstItem="ElV-RB-MhJ" firstAttribute="trailing" secondItem="YG5-rt-pnk" secondAttribute="trailing" constant="10" id="nff-hU-zWM"/>
                             <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="HLj-au-V3m" secondAttribute="bottom" constant="10" id="nmI-C3-U4U"/>
                             <constraint firstAttribute="trailing" secondItem="HLj-au-V3m" secondAttribute="trailing" constant="10" id="skk-U4-Ecp"/>
                         </constraints>
