@@ -10,6 +10,7 @@ import XCTest
 
 final class CurrencyTestCase: XCTestCase {
 
+    // init CurrencyViewModel with MockURLProtocol
     private func getCurrencyViewModel(_ mock: AnyClass) -> CurrencyViewModel {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [mock]
@@ -18,12 +19,16 @@ final class CurrencyTestCase: XCTestCase {
     }
 
     func testGetAvailableCurrenciesShouldPostFailedCallbackIfError() async {
+        // Given
         let currencyModel = getCurrencyViewModel(MockFailedCallbackIfError.self)
+        
+        // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getSymbols { getSymbols in
             do {
                 _ = try getSymbols()
             } catch {
+                // Then
                 XCTAssertEqual(error as? AsyncError, AsyncError.response)
             }
             expectation.fulfill()
@@ -32,12 +37,16 @@ final class CurrencyTestCase: XCTestCase {
     }
 
     func testGetAvailableCurrenciesShouldPostFailedCallbackIfNoData() async {
+        // Given
         let currencyModel = getCurrencyViewModel(MockFailedCallbackIfNoData.self)
+        
+        // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getSymbols { getSymbols in
             do {
                 _ = try getSymbols()
             } catch {
+                // Then
                 XCTAssertEqual(error as? AsyncError, AsyncError.data)
             }
             expectation.fulfill()
@@ -46,12 +55,16 @@ final class CurrencyTestCase: XCTestCase {
     }
 
     func testGetAvailableCurrenciesShouldPostFailedCallbackIfDecodeError() async {
+        // Given
         let currencyModel = getCurrencyViewModel(MockFailedCallbackIfDecodeError.self)
+        
+        // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getSymbols { getSymbols in
             do {
                 _ = try getSymbols()
             } catch {
+                // Then
                 XCTAssertEqual(error as? AsyncError, AsyncError.decode)
             }
             expectation.fulfill()
@@ -60,12 +73,16 @@ final class CurrencyTestCase: XCTestCase {
     }
 
     func testGetAvailableCurrenciesShouldPostFailedCallbackIfDataError() async {
+        // Given
         let currencyModel = getCurrencyViewModel(MockCurrencyFailedCallbackIfDataError.self)
+        
+        // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getSymbols { getSymbols in
             do {
                 _ = try getSymbols()
             } catch {
+                // Then
                 XCTAssertEqual(error as? AsyncError, AsyncError.json)
             }
             expectation.fulfill()
@@ -74,10 +91,14 @@ final class CurrencyTestCase: XCTestCase {
     }
 
     func testGetAvailableCurrenciesShouldPostSuccess() async {
+        // Given
         let currencyModel = getCurrencyViewModel(MockCurrencySuccess.self)
+        
+        // When
         XCTAssertTrue(currencyModel.symbols.isEmpty)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getSymbols { getSymbols in
+            // Then
             if let symbols = try? getSymbols() {
                 XCTAssertEqual(symbols.map { $0.country }, ["Bhutanese Ngultrum", "Bitcoin", "Botswanan Pula", "Euro", "United States Dollar"])
             }
@@ -92,12 +113,16 @@ final class CurrencyTestCase: XCTestCase {
     }
 
     func testGetAvailableCurrencyConversionShouldPostFailedCallbackIfError() async {
+        // Given
         let currencyModel = getCurrencyViewModel(MockFailedCallbackIfError.self)
+        
+        // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getConversion(from: "EUR", to: "USD", amount: 1) { getResult in
             do {
                 _ = try getResult()
             } catch {
+                // Then
                 XCTAssertEqual(error as? AsyncError, AsyncError.response)
             }
             expectation.fulfill()
@@ -106,12 +131,16 @@ final class CurrencyTestCase: XCTestCase {
     }
 
     func testGetAvailableCurrencyConversionShouldPostFailedCallbackIfNoData() async {
+        // Given
         let currencyModel = getCurrencyViewModel(MockFailedCallbackIfNoData.self)
+        
+        // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getConversion(from: "EUR", to: "USD", amount: 1) { getResult in
             do {
                 _ = try getResult()
             } catch {
+                // Then
                 XCTAssertEqual(error as? AsyncError, AsyncError.data)
             }
             expectation.fulfill()
@@ -120,12 +149,16 @@ final class CurrencyTestCase: XCTestCase {
     }
 
     func testGetAvailableCurrencyConversionShouldPostFailedCallbackIfDataError() async {
+        // Given
         let currencyModel = getCurrencyViewModel(MockCurrencyFailedCallbackIfDataError.self)
+        
+        // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getConversion(from: "EURo", to: "USD", amount: 1) { getResult in
             do {
                 _ = try getResult()
             } catch {
+                // Then
                 XCTAssertEqual(error as? AsyncError, AsyncError.json)
             }
             expectation.fulfill()
@@ -134,12 +167,16 @@ final class CurrencyTestCase: XCTestCase {
     }
 
     func testGetAvailableCurrencyConversionShouldPostFailedCallbackIfDecodeError() async {
+        // Given
         let currencyModel = getCurrencyViewModel(MockFailedCallbackIfDecodeError.self)
+        
+        // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getConversion(from: "EUR", to: "USD", amount: 1) { getResult in
             do {
                 _ = try getResult()
             } catch {
+                // Then
                 XCTAssertEqual(error as? AsyncError, AsyncError.decode)
             }
             expectation.fulfill()
@@ -148,10 +185,14 @@ final class CurrencyTestCase: XCTestCase {
     }
 
     func testGetAvailableCurrencyConversionShouldPostSuccess() async {
+        // Given
         let currencyModel = getCurrencyViewModel(MockCurrencyConvertSuccess.self)
+        
+        // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getConversion(from: "EUR", to: "USD", amount: 1) { getResult in
             let amount = try? getResult()
+            // Then
             XCTAssertEqual(amount, 0.987523)
             expectation.fulfill()
         }
@@ -159,10 +200,14 @@ final class CurrencyTestCase: XCTestCase {
     }
 
     func testGetAvailableCurrencyConversionFromSetShouldPostSuccess() async {
+        // Given
         let currencyModel = getCurrencyViewModel(MockCurrencyConvertSuccess.self)
+        
+        // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getConversion(from: "EUR", to: "USD", amount: 1) { getResult in
             let amount = try? getResult()
+            // Then
             XCTAssertEqual(amount, 0.987523)
             currencyModel.getConversion(from: "EUR", to: "USD", amount: 2) { getResult in
                 let amount = try? getResult()

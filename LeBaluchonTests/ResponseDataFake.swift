@@ -8,16 +8,21 @@
 import Foundation
 
 class ResponseDataFake {
+    // Success response
     static let responseOk = HTTPURLResponse(url: URL(string: "http://openclassrooms.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
 
+    // Error response
     static let responseNok = HTTPURLResponse(url: URL(string: "http://openclassrooms.com")!, statusCode: 404, httpVersion: nil, headerFields: nil)!
 
+    // Custom error
     class FakeError: Error {}
     static let error = FakeError()
 
+    // Incorrect data
     static let incorrectData = "erreur".data(using: .utf8)!
 
 // MARK: - Currency
+    // Error json response
     static let currencyServiceDataError = """
     {
         "success": false,
@@ -29,6 +34,7 @@ class ResponseDataFake {
     }
     """.data(using: .utf8)!
 
+    // Correct symbols json response
     static let currencyServiceAvailableCurrenciesData = """
     {
         "success": true,
@@ -42,6 +48,7 @@ class ResponseDataFake {
     }
     """.data(using: .utf8)!
 
+    // Correct conversion json response
     static let currencyServiceConvertData = """
     {
         "success": true,
@@ -60,6 +67,7 @@ class ResponseDataFake {
     """.data(using: .utf8)!
 
 // MARK: - Translate
+    // Correct languages json response
     static let translateServiceLanguagesData = """
     {
         "data": {
@@ -81,6 +89,7 @@ class ResponseDataFake {
     }
     """.data(using: .utf8)!
 
+    // Correct translation json response
     static let translateServiceTranslationData = """
     {
         "data": {
@@ -94,8 +103,10 @@ class ResponseDataFake {
     """.data(using: .utf8)!
 
 // MARK: - Weather
+    // Correct weather json response
     static var weatherServiceData: Data? {
         let bundle = Bundle(for: ResponseDataFake.self)
+        // Read json from Weather.json
         let url = bundle.url(forResource: "Weather", withExtension: "json")
         if let data = try? Data(contentsOf: url!) {
             return data

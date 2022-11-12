@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MockURLProtocol for unit tests
 class MockURLProtocol: URLProtocol {
     static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data?) )?
     override class func canInit(with request: URLRequest) -> Bool {
@@ -35,6 +36,7 @@ class MockURLProtocol: URLProtocol {
 
 // MARK: - Default
 
+// Custom mock for incorrect status code response
 class MockFailedCallbackIfError: MockURLProtocol {
     override func startLoading() {
         MockFailedCallbackIfError.requestHandler = { _ in
@@ -44,6 +46,7 @@ class MockFailedCallbackIfError: MockURLProtocol {
     }
 }
 
+// Custom mock for empty data
 class MockFailedCallbackIfNoData: MockURLProtocol {
     override func startLoading() {
         MockFailedCallbackIfNoData.requestHandler = { _ in
@@ -53,6 +56,7 @@ class MockFailedCallbackIfNoData: MockURLProtocol {
     }
 }
 
+// Custom mock for incorrect data
 class MockFailedCallbackIfDecodeError: MockURLProtocol {
     override func startLoading() {
         MockFailedCallbackIfDecodeError.requestHandler = { _ in
@@ -64,6 +68,7 @@ class MockFailedCallbackIfDecodeError: MockURLProtocol {
 
 // MARK: - Currency
 
+// Custom mock for data error
 class MockCurrencyFailedCallbackIfDataError: MockURLProtocol {
     override func startLoading() {
         MockCurrencyFailedCallbackIfDataError.requestHandler = { _ in
@@ -73,6 +78,7 @@ class MockCurrencyFailedCallbackIfDataError: MockURLProtocol {
     }
 }
 
+// Custom mock for symbols request data
 class MockCurrencySuccess: MockURLProtocol {
     override func startLoading() {
         MockCurrencySuccess.requestHandler = { _ in
@@ -82,6 +88,7 @@ class MockCurrencySuccess: MockURLProtocol {
     }
 }
 
+// Custom mock for conversion request data
 class MockCurrencyConvertSuccess: MockURLProtocol {
     override func startLoading() {
         MockCurrencyConvertSuccess.requestHandler = { _ in
@@ -93,6 +100,7 @@ class MockCurrencyConvertSuccess: MockURLProtocol {
 
 // MARK: - Translate
 
+// Custom mock for languages request data
 class MockTranslateLanguagesSuccess: MockURLProtocol {
     override func startLoading() {
         MockTranslateLanguagesSuccess.requestHandler = { _ in
@@ -102,6 +110,7 @@ class MockTranslateLanguagesSuccess: MockURLProtocol {
     }
 }
 
+// Custom mock for translation request data
 class MockTranslateTranslationSuccess: MockURLProtocol {
     override func startLoading() {
         MockTranslateTranslationSuccess.requestHandler = { _ in
@@ -111,6 +120,9 @@ class MockTranslateTranslationSuccess: MockURLProtocol {
     }
 }
 
+// MARK: - Weather
+
+// Custom mock for weather request data
 class MockWeatherSuccess: MockURLProtocol {
     override func startLoading() {
         MockWeatherSuccess.requestHandler = { _ in
