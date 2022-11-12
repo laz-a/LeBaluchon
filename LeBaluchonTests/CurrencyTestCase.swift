@@ -199,6 +199,23 @@ final class CurrencyTestCase: XCTestCase {
         wait(for: [expectation], timeout: 0.5)
     }
 
+    func testGetAvailableCurrency2ConversionShouldPostSuccess() async {
+        // Given
+        let currencyModel = getCurrencyViewModel(MockCurrencyConvertSuccess.self)
+
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        currencyModel.getConversion(from: "EUR", to: "USD", amount: 1) { _ in }
+
+        currencyModel.getConversion(from: "EUR", to: "USD", amount: 10) { getResult in
+            let amount = try? getResult()
+            // Then
+            XCTAssertEqual(amount, 9.87523)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.5)
+    }
+
     func testGetAvailableCurrencyConversionFromSetShouldPostSuccess() async {
         // Given
         let currencyModel = getCurrencyViewModel(MockCurrencyConvertSuccess.self)
