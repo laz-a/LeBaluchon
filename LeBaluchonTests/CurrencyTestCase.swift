@@ -28,7 +28,7 @@ final class CurrencyTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetAvailableCurrenciesShouldPostFailedCallbackIfNoData() async {
@@ -42,7 +42,7 @@ final class CurrencyTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetAvailableCurrenciesShouldPostFailedCallbackIfDecodeError() async {
@@ -56,7 +56,7 @@ final class CurrencyTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetAvailableCurrenciesShouldPostFailedCallbackIfDataError() async {
@@ -70,12 +70,12 @@ final class CurrencyTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetAvailableCurrenciesShouldPostSuccess() async {
         let currencyModel = getCurrencyViewModel(MockCurrencySuccess.self)
-        XCTAssertNil(currencyModel.symbols)
+        XCTAssertTrue(currencyModel.symbols.isEmpty)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         currencyModel.getSymbols { getSymbols in
             if let symbols = try? getSymbols() {
@@ -88,7 +88,7 @@ final class CurrencyTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetAvailableCurrencyConversionShouldPostFailedCallbackIfError() async {
@@ -102,7 +102,7 @@ final class CurrencyTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetAvailableCurrencyConversionShouldPostFailedCallbackIfNoData() async {
@@ -116,7 +116,7 @@ final class CurrencyTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetAvailableCurrencyConversionShouldPostFailedCallbackIfDataError() async {
@@ -130,7 +130,7 @@ final class CurrencyTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetAvailableCurrencyConversionShouldPostFailedCallbackIfDecodeError() async {
@@ -144,7 +144,7 @@ final class CurrencyTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetAvailableCurrencyConversionShouldPostSuccess() async {
@@ -155,7 +155,7 @@ final class CurrencyTestCase: XCTestCase {
             XCTAssertEqual(amount, 0.987523)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetAvailableCurrencyConversionFromSetShouldPostSuccess() async {
@@ -170,6 +170,6 @@ final class CurrencyTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 }

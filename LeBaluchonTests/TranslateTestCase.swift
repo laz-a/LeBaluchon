@@ -28,7 +28,7 @@ final class TranslateTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetLanguagesShouldPostFailedCallbackIfNoData() async {
@@ -42,7 +42,7 @@ final class TranslateTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetLanguagesShouldPostFailedCallbackIfDecodeError() async {
@@ -56,12 +56,12 @@ final class TranslateTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetLanguagesShouldPostSuccess() async {
         let translateModel = getTranslateViewModel(MockTranslateLanguagesSuccess.self)
-        XCTAssertNil(translateModel.languages)
+        XCTAssertTrue(translateModel.languages.isEmpty)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         translateModel.getLanguages { getLanguages in
             if let languages = try? getLanguages() {
@@ -74,13 +74,13 @@ final class TranslateTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetTranslationShouldPostFailedCallbackIfError() async {
         let translateModel = getTranslateViewModel(MockFailedCallbackIfError.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        translateModel.getTranslation(from: "fr", to: "en", text: ["Bonjour !"]) { getTranslation in
+        translateModel.getTranslation(from: "fr", to: "en", text: "Bonjour !") { getTranslation in
             do {
                 _ = try getTranslation()
             } catch {
@@ -88,13 +88,13 @@ final class TranslateTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetTranslationShouldPostFailedCallbackIfNoData() async {
         let translateModel = getTranslateViewModel(MockFailedCallbackIfNoData.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        translateModel.getTranslation(from: "fr", to: "en", text: ["Bonjour !"]) { getTranslation in
+        translateModel.getTranslation(from: "fr", to: "en", text: "Bonjour !") { getTranslation in
             do {
                 _ = try getTranslation()
             } catch {
@@ -102,13 +102,13 @@ final class TranslateTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetTranslationShouldPostFailedCallbackIfDecodeError() async {
         let translateModel = getTranslateViewModel(MockFailedCallbackIfDecodeError.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        translateModel.getTranslation(from: "fr", to: "en", text: ["Bonjour !"]) { getTranslation in
+        translateModel.getTranslation(from: "fr", to: "en", text: "Bonjour !") { getTranslation in
             do {
                 _ = try getTranslation()
             } catch {
@@ -116,17 +116,17 @@ final class TranslateTestCase: XCTestCase {
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 
     func testGetTranslationShouldPostSuccess() async {
         let translateModel = getTranslateViewModel(MockTranslateTranslationSuccess.self)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        translateModel.getTranslation(from: "fr", to: "en", text: ["Bonjour !"]) { getTranslation in
+        translateModel.getTranslation(from: "fr", to: "en", text: "Bonjour !") { getTranslation in
             let translation = try? getTranslation()
-            XCTAssertEqual(translation, ["Good morning !"])
+            XCTAssertEqual(translation, "Good morning !")
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 0.5)
     }
 }
