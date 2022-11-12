@@ -57,7 +57,7 @@ final class WeatherTestCase: XCTestCase {
     func testGetWeatherForCoordinateShouldPostFailedCallbackIfDecodeError() async {
         // Given
         let weatherModel = getWeatherViewModel(MockFailedCallbackIfDecodeError.self)
-        
+
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         weatherModel.getWeatherForLocation(latitude: 48.85, longitude: 2.35) { getWeather in
@@ -75,7 +75,7 @@ final class WeatherTestCase: XCTestCase {
     func testGetWeatherForLocationShouldPostFailedCallbackIfDecodeError() async {
         // Given
         let weatherModel = getWeatherViewModel(MockFailedCallbackIfDecodeError.self)
-        
+
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         weatherModel.getWeatherForLocation(location: "Paris") { getWeather in
@@ -93,7 +93,7 @@ final class WeatherTestCase: XCTestCase {
     func testGetWeatherForLocationShouldPostFailedCallbackIfLocationError() async {
         // Given
         let weatherModel = getWeatherViewModel(MockFailedCallbackIfError.self)
-        
+
         // When
         weatherModel.getWeatherForLocation(location: "hjdfbjkfhbjhf") { getWeather in
             do {
@@ -108,7 +108,7 @@ final class WeatherTestCase: XCTestCase {
     func testGetWeatherForLocationShouldPostFailedCallbackIfCoordinateError() async {
         // Given
         let weatherModel = getWeatherViewModel(MockFailedCallbackIfError.self)
-        
+
         // When
         weatherModel.getWeatherForLocation(latitude: 222.12, longitude: 333.13) { getWeather in
             do {
@@ -123,7 +123,7 @@ final class WeatherTestCase: XCTestCase {
     func testGetWeatherForCoordinateShouldPostSuccess() async {
         // Given
         let weatherModel = getWeatherViewModel(MockWeatherSuccess.self)
-        
+
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         weatherModel.getWeatherForLocation(latitude: 48.85, longitude: 2.35) { getWeather in
@@ -139,7 +139,7 @@ final class WeatherTestCase: XCTestCase {
     func testGetWeatherForLocationShouldPostSuccess() async {
         // Given
         let weatherModel = getWeatherViewModel(MockWeatherSuccess.self)
-        
+
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         weatherModel.getWeatherForLocation(location: "Paris") { getWeather in
