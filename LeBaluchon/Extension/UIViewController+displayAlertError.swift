@@ -8,7 +8,9 @@
 import Foundation
 import UIKit
 
+// Error alert extension
 extension UIViewController {
+    // Display alert error
     func displayAlertError(message: String) {
         let errorAlertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         errorAlertController.addAction(UIAlertAction(title: "Ok", style: .default))

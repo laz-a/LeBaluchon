@@ -9,7 +9,9 @@ import Foundation
 import UIKit
 import CoreLocation
 
+// Weather structure
 struct Weather: Decodable {
+    // Current weather structure
     struct Current: Decodable {
         let dt: Int
         let sunrise: Int
@@ -26,6 +28,8 @@ struct Weather: Decodable {
         let wind_deg: Int
         let weather: [WeatherDetail]
     }
+
+    // Temp structue
     struct Temp: Decodable {
         let day: Double
         let min: Double
@@ -34,12 +38,16 @@ struct Weather: Decodable {
         let eve: Double
         let morn: Double
     }
+
+    // Feels like structure
     struct FeelsLike: Decodable {
         let day: Double
         let night: Double
         let eve: Double
         let morn: Double
     }
+
+    // Daily weather structure
     struct Daily: Decodable {
         let dt: Int
         let sunrise: Int
@@ -62,6 +70,8 @@ struct Weather: Decodable {
         let snow: Double?
         let uvi: Double
     }
+
+    // Weather detail structure
     struct WeatherDetail: Decodable {
         let id: Int
         let main: String
@@ -72,6 +82,7 @@ struct Weather: Decodable {
             case id, main, description, icon
         }
 
+        // Decode json
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: RootKeys.self)
 
@@ -81,6 +92,7 @@ struct Weather: Decodable {
 
             let code = try container.decode(String.self, forKey: .icon)
 
+            // Weather icon relative to API weather code
             switch code {
             case "01d": icon = "sun.max"
             case "01n": icon = "moon"
@@ -113,6 +125,7 @@ struct Weather: Decodable {
     let daily: [Daily]
 }
 
+// Location structure
 struct Location {
     let city: String
     let country: String

@@ -10,6 +10,12 @@ import UIKit
 class CurrencyViewController: UIViewController {
     private let currencyModel = CurrencyViewModel()
 
+    // Currency code corresponding to selected row PickerView
+    private var targetCurrency: String {
+        let toRow = toPickerView.selectedRow(inComponent: 0)
+        return currencyModel.symbols[toRow].code
+    }
+
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var fromCodeLabel: UILabel!
@@ -19,67 +25,83 @@ class CurrencyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Hide PickerView and disable TextFields
         toPickerView.isHidden = true
         setEnableTextFields(false)
 
-        currencyModel.getSymbols { getSymbols in
-            do {
-                let symbols = try getSymbols()
-                self.toPickerView.reloadAllComponents()
-                self.fromCodeLabel.text = self.currencyModel.defaultFromCurrency
-                if let usdIndex = symbols.firstIndex(where: { $0.code == self.currencyModel.defaultToCurrency }) {
-                    self.toPickerView.selectRow(usdIndex, inComponent: 0, animated: false)
-                    self.pickerView(self.toPickerView, didSelectRow: usdIndex, inComponent: 0)
-                }
-                self.toPickerView.isHidden = false
-                self.setEnableTextFields(true)
-            } catch {
-                self.displayAlertError(message: error.localizedDescription)
-            }
-        }
+        // Get available currencies
+        getSymbols()
     }
 
     /*
     // MARK: - Navigation
     */
 
+    // Dismiss keyboard on tap gesture
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         fromTextField.resignFirstResponder()
     }
 
+    // Call convert function when textfield change
     @IBAction func editFromTextField(_ sender: UITextField) {
         convert()
     }
 
-    private func setEnableTextFields(_ value: Bool) {
-        toTextField.backgroundColor = value ? .white : .lightText
-        fromTextField.backgroundColor = value ? .white : .lightText
-        fromTextField.isEnabled = value
+    // Change TextFields appearance
+    private func setEnableTextFields(_ visible: Bool) {
+        toTextField.backgroundColor = visible ? .white : .lightText
+        fromTextField.backgroundColor = visible ? .white : .lightText
+        fromTextField.isEnabled = visible
     }
 
-    private func getToCode() -> String? {
-        let toRow = toPickerView.selectedRow(inComponent: 0)
-        if let toCode = currencyModel.symbols?[toRow] {
-            return toCode.code
+    // Get available currencies symbols
+    private func getSymbols() {
+        currencyModel.getSymbols { getSymbols in
+            do {
+                let symbols = try getSymbols()
+                // Reload pickerview data
+                self.toPickerView.reloadAllComponents()
+                // Set fromCodeLabel to default currency (EUR)
+                self.fromCodeLabel.text = self.currencyModel.defaultFromCurrency
+
+                // Select $ as target currency if exist in available currencies
+                if let toIndex = symbols.firstIndex(where: { $0.code == self.currencyModel.defaultToCurrency }) {
+                    self.toPickerView.selectRow(toIndex, inComponent: 0, animated: false)
+                    self.pickerView(self.toPickerView, didSelectRow: toIndex, inComponent: 0)
+                }
+                // Display currency PickerView
+                self.toPickerView.isHidden = false
+                // Enables TextFields
+                self.setEnableTextFields(true)
+            } catch {
+                // Display alert error message
+                self.displayAlertError(message: error.localizedDescription)
+            }
         }
-        return nil
     }
 
+    // Currency conversion
     private func convert() {
+        // Get default from currency (EUR)
         let from = currencyModel.defaultFromCurrency
-
+        // Test amount value
         guard let amountText = fromTextField.text, !amountText.isEmpty else {
             toTextField.text = ""
             return
         }
 
-        if let to = getToCode(), let amount = Double(amountText) {
-            currencyModel.getConversion(from: from, to: to, amount: amount) { getResult in
+        // Try convert amount text to double
+        if let amount = Double(amountText) {
+            // Convert amount according to selected currency
+            currencyModel.getConversion(from: from, to: targetCurrency, amount: amount) { getResult in
                 do {
                     let result = try getResult()
+                    // Update result label
                     self.toTextField.text = String(format: "%.2f", result)
                 } catch {
+                    // Clear result label if error
                     self.toTextField.text = ""
+                    // Display alert error
                     self.displayAlertError(message: error.localizedDescription)
                 }
             }
@@ -87,31 +109,32 @@ class CurrencyViewController: UIViewController {
     }
 }
 
+// PickerView dataSource
 extension CurrencyViewController: UIPickerViewDataSource {
+    // Set number of component
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
 
+    // Set number of rows
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if let availableCurrencies = currencyModel.symbols {
-            return availableCurrencies.count
-        }
-        return 0
+        // Return number of currencies symbols
+        return currencyModel.symbols.count
     }
 }
 
+// PickerView delegate
 extension CurrencyViewController: UIPickerViewDelegate {
+    // Set PickerView row title
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if let availableCurrencies = currencyModel.symbols {
-            return availableCurrencies[row].country
-        }
-        return nil
+        return currencyModel.symbols[row].country
     }
 
+    // On select PickerView row
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if let to = getToCode() {
-            self.toCodeLabel.text = to
-        }
+        // Update toCodeLabel to display the new code currency
+        self.toCodeLabel.text = targetCurrency
+        // Converion
         convert()
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Custom API error
 enum AsyncError: Error {
     case data
     case response
@@ -15,6 +16,7 @@ enum AsyncError: Error {
     case location
 }
 
+// Define error description
 extension AsyncError: LocalizedError {
     public var errorDescription: String? {
         switch self {
