@@ -14,6 +14,9 @@ class WeatherViewController: UIViewController {
     // Location manager for user localization
     private let locationManager = CLLocationManager()
 
+    @IBOutlet weak var currentLocationStackView: UIStackView!
+    @IBOutlet weak var unauthorizedLocalizationView: UIView!
+
     @IBOutlet weak var currentLocationWeatherIcon: UIImageView!
     @IBOutlet weak var currentLocationTempLabel: UILabel!
     @IBOutlet weak var currentLocationDescriptionLabel: UILabel!
@@ -28,12 +31,16 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        unauthorizedLocalizationView.isHidden = true
+
         // Set location manager delegate
         locationManager.delegate = self
         // Ask for location authorization
         locationManager.requestWhenInUseAuthorization()
         // Get weather for New York
         weatherForLocation("New York")
+        // Check location authorization
+        locationAuthorization(locationManager)
     }
 
     /*
@@ -54,6 +61,33 @@ class WeatherViewController: UIViewController {
         }
         // Get weather for user input
         weatherForLocation(searchLocation)
+    }
+
+    // Open app setting
+    @IBAction func tappedAllowLocation(_ sender: Any) {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl)
+        }
+    }
+
+    // Check location authorization
+    private func locationAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .notDetermined: break
+        case .restricted, .denied:
+            currentLocationStackView.isHidden = true
+            unauthorizedLocalizationView.isHidden = false
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+            currentLocationStackView.isHidden = false
+            unauthorizedLocalizationView.isHidden = true
+        @unknown default:
+            self.displayAlertError(message: "Unknow localization error")
+        }
     }
 
     // Get location for user input location
@@ -129,14 +163,7 @@ class WeatherViewController: UIViewController {
 extension WeatherViewController: CLLocationManagerDelegate {
     // Test location authorization
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        switch manager.authorizationStatus {
-        case .notDetermined, .restricted, .denied:
-            self.displayAlertError(message: "You need to allow localization")
-        case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.requestLocation()
-        @unknown default:
-            self.displayAlertError(message: "Localization authorization unknow error")
-        }
+        locationAuthorization(manager)
     }
 
     // Get user current location
