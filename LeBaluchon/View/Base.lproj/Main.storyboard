@@ -46,6 +46,9 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency converter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uda-Xa-6QR">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="4pM-jf-nMT"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="36"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -166,6 +169,9 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqc-0P-pCh">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="SpB-tP-hOf"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="36"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -261,31 +267,31 @@
                                     <outlet property="delegate" destination="0KM-Zz-YN8" id="yJl-KA-Qn7"/>
                                 </connections>
                             </pickerView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2IA-b7-CtX">
-                                <rect key="frame" x="0.0" y="495.66666666666669" width="375" height="233.33333333333331"/>
-                                <color key="backgroundColor" white="1" alpha="0.79734308305955093" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2IA-b7-CtX">
+                                <rect key="frame" x="0.0" y="494.66666666666669" width="375" height="234.33333333333331"/>
+                                <color key="backgroundColor" white="1" alpha="0.74676382304816846" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ElV-RB-MhJ"/>
                         <color key="backgroundColor" red="0.63137254899999995" green="0.70196078429999997" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="2IA-b7-CtX" secondAttribute="bottom" id="9OK-VF-iLp"/>
                             <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="YG5-rt-pnk" secondAttribute="bottom" id="9da-n8-aE4"/>
                             <constraint firstItem="ElV-RB-MhJ" firstAttribute="trailing" secondItem="2IA-b7-CtX" secondAttribute="trailing" id="CJi-7y-Ey4"/>
                             <constraint firstItem="HLj-au-V3m" firstAttribute="leading" secondItem="ElV-RB-MhJ" secondAttribute="leading" constant="10" id="CeW-0I-Ibw"/>
+                            <constraint firstItem="2IA-b7-CtX" firstAttribute="height" secondItem="YG5-rt-pnk" secondAttribute="height" constant="1" id="F3i-bI-6dw"/>
                             <constraint firstItem="HLj-au-V3m" firstAttribute="top" secondItem="ElV-RB-MhJ" secondAttribute="top" constant="30" id="IkA-S8-sdQ"/>
                             <constraint firstItem="YG5-rt-pnk" firstAttribute="top" secondItem="YmB-cS-v8o" secondAttribute="top" id="KZE-nd-dC4"/>
-                            <constraint firstItem="2IA-b7-CtX" firstAttribute="top" secondItem="YG5-rt-pnk" secondAttribute="top" id="LK6-My-9wA"/>
                             <constraint firstItem="VjN-iT-oIQ" firstAttribute="top" secondItem="2wQ-on-ijz" secondAttribute="top" id="OvH-0e-NNx"/>
                             <constraint firstAttribute="trailing" secondItem="VjN-iT-oIQ" secondAttribute="trailing" id="V2i-3a-s7t"/>
                             <constraint firstItem="VjN-iT-oIQ" firstAttribute="leading" secondItem="ElV-RB-MhJ" secondAttribute="leading" id="i3c-wd-rra"/>
                             <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="VjN-iT-oIQ" secondAttribute="bottom" id="izc-PV-gVC"/>
                             <constraint firstItem="YG5-rt-pnk" firstAttribute="leading" secondItem="ElV-RB-MhJ" secondAttribute="leading" constant="10" id="kKE-RP-R2r"/>
                             <constraint firstItem="ElV-RB-MhJ" firstAttribute="trailing" secondItem="YG5-rt-pnk" secondAttribute="trailing" constant="10" id="nff-hU-zWM"/>
-                            <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="HLj-au-V3m" secondAttribute="bottom" constant="10" id="nmI-C3-U4U"/>
-                            <constraint firstItem="YG5-rt-pnk" firstAttribute="bottom" secondItem="2IA-b7-CtX" secondAttribute="bottom" id="qdW-tf-jUG"/>
                             <constraint firstAttribute="trailing" secondItem="HLj-au-V3m" secondAttribute="trailing" constant="10" id="skk-U4-Ecp"/>
                             <constraint firstItem="2IA-b7-CtX" firstAttribute="leading" secondItem="ElV-RB-MhJ" secondAttribute="leading" id="xII-eQ-cZa"/>
+                            <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="HLj-au-V3m" secondAttribute="bottom" constant="10" id="zSw-7L-oIX"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="v4B-2r-03A" appends="YES" id="CTY-g6-inS"/>
@@ -328,6 +334,9 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mg2-Qk-8Ws">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="g0Y-lL-Wjq"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="36"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -444,7 +453,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="e4y-kA-UmG" secondAttribute="height" multiplier="1:1" id="Nuf-Zy-s4F"/>
                                                 </constraints>
-                                                <color key="tintColor" red="0.09250679817373153" green="0.71397813547465372" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" systemColor="linkColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain">
                                                     <backgroundConfiguration key="background" image="location.fill" catalog="system"/>
@@ -580,6 +589,9 @@
         <image name="weather" width="25" height="25"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
