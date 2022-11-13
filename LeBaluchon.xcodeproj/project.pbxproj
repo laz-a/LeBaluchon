@@ -524,6 +524,7 @@
 				DEVELOPMENT_TEAM = 323KF6FQG2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LeBaluchon/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app uses your location to personalize your app experience";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -555,6 +556,7 @@
 				DEVELOPMENT_TEAM = 323KF6FQG2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LeBaluchon/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app uses your location to personalize your app experience";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
