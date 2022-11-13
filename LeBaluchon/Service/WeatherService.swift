@@ -12,7 +12,7 @@ class WeatherService {
     static var shared = WeatherService()
     private init() {}
 
-    private static let url = "https://api.openweathermap.org/data/3.0/onecall"
+    private static let url = ServiceURL.weather
     private static let apiKey = ApiKey.openWeatherMap
 
     private var task: URLSessionDataTask?

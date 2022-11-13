@@ -12,7 +12,7 @@ class TranslateService {
     static var shared = TranslateService()
     private init() {}
 
-    private static let url = "https://translation.googleapis.com/language/translate/v2"
+    private static let url = ServiceURL.translate
     private static let apiKey = ApiKey.googleTranslate
     private static let target = "en"
 

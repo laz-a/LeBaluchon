@@ -12,7 +12,7 @@ class CurrencyService {
     static var shared = CurrencyService()
     private init() {}
 
-    private static let url = "https://api.apilayer.com/fixer"
+    private static let url = ServiceURL.currency
     private static let apiKey = ApiKey.fixer
 
     private var task: URLSessionDataTask?
