@@ -21,6 +21,7 @@ class CurrencyViewController: UIViewController {
     @IBOutlet weak var fromCodeLabel: UILabel!
     @IBOutlet weak var toCodeLabel: UILabel!
     @IBOutlet weak var toPickerView: UIPickerView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,7 @@ class CurrencyViewController: UIViewController {
 
     // Get available currencies symbols
     private func getSymbols() {
+        activityIndicator.startAnimating()
         currencyModel.getSymbols { getSymbols in
             do {
                 let symbols = try getSymbols()
@@ -77,6 +79,7 @@ class CurrencyViewController: UIViewController {
                 // Display alert error message
                 self.displayAlertError(message: error.localizedDescription)
             }
+            self.activityIndicator.stopAnimating()
         }
     }
 
@@ -92,6 +95,7 @@ class CurrencyViewController: UIViewController {
 
         // Try convert amount text to double
         if let amount = Double(amountText) {
+            self.activityIndicator.startAnimating()
             // Convert amount according to selected currency
             currencyModel.getConversion(from: from, to: targetCurrency, amount: amount) { getResult in
                 do {
@@ -104,6 +108,7 @@ class CurrencyViewController: UIViewController {
                     // Display alert error
                     self.displayAlertError(message: error.localizedDescription)
                 }
+                self.activityIndicator.stopAnimating()
             }
         }
     }

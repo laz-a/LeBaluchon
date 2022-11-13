@@ -15,6 +15,7 @@ class TranslateViewController: UIViewController {
     @IBOutlet weak var swapLanguageButton: UIButton!
     @IBOutlet weak var translateButton: UIButton!
     @IBOutlet weak var selectLanguagePickerView: UIPickerView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var translateTextView: UITextView!
     @IBOutlet weak var translatedTextView: UITextView!
 
@@ -79,6 +80,7 @@ class TranslateViewController: UIViewController {
 
     // Get available languages
     private func getLanguages() {
+        activityIndicator.startAnimating()
         translateModel.getLanguages { getLanguages in
             do {
                 let languages = try getLanguages()
@@ -86,14 +88,15 @@ class TranslateViewController: UIViewController {
                 self.selectLanguagePickerView.reloadAllComponents()
 
                 // Get device languages
-                if let cuurentLanguage = Locale.current.languageCode {
+                if let cuurentLanguage = Locale.preferredLanguages.first {
                     // If device language exist in available google api languages, set source language to device lanaguage
                     if let currentLanguageIndex = languages.firstIndex(where: { $0.language == cuurentLanguage }) {
                         self.selectLanguagePickerView.selectRow(currentLanguageIndex, inComponent: 0, animated: false)
                         self.pickerView(self.selectLanguagePickerView, didSelectRow: currentLanguageIndex, inComponent: 0)
                     }
                     // Set target language to english if available
-                    if let enIndex = languages.firstIndex(where: { $0.language == "en" }) {
+                    let toLanguage = cuurentLanguage == "fr" ? "en" : "fr"
+                    if let enIndex = languages.firstIndex(where: { $0.language == toLanguage }) {
                         self.selectLanguagePickerView.selectRow(enIndex, inComponent: 1, animated: false)
                         self.pickerView(self.selectLanguagePickerView, didSelectRow: enIndex, inComponent: 1)
                     }
@@ -104,6 +107,7 @@ class TranslateViewController: UIViewController {
                 // Display alert error
                 self.displayAlertError(message: error.localizedDescription)
             }
+            self.activityIndicator.stopAnimating()
         }
     }
 
@@ -133,6 +137,7 @@ class TranslateViewController: UIViewController {
             return
         }
 
+        activityIndicator.startAnimating()
         // Translate text according to source/target languages
         translateModel.getTranslation(from: selectedFromLanguage.language, to: selectedToLanguage.language, text: text) { getTranslation in
             do {
@@ -143,6 +148,7 @@ class TranslateViewController: UIViewController {
                 // Display alert error
                 self.displayAlertError(message: error.localizedDescription)
             }
+            self.activityIndicator.stopAnimating()
         }
     }
 

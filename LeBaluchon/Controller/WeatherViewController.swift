@@ -16,7 +16,8 @@ class WeatherViewController: UIViewController {
 
     @IBOutlet weak var currentLocationStackView: UIStackView!
     @IBOutlet weak var unauthorizedLocalizationView: UIView!
-
+    @IBOutlet weak var currentActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var searchActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var currentLocationWeatherIcon: UIImageView!
     @IBOutlet weak var currentLocationTempLabel: UILabel!
     @IBOutlet weak var currentLocationDescriptionLabel: UILabel!
@@ -92,6 +93,7 @@ class WeatherViewController: UIViewController {
 
     // Get location for user input location
     private func weatherForLocation(_ location: String) {
+        searchActivityIndicator.startAnimating()
         // Get weather for location user input
         weatherModel.getWeatherForLocation(location: location) { getSearchWeather in
             do {
@@ -130,11 +132,13 @@ class WeatherViewController: UIViewController {
                 // Display alert error
                 self.displayAlertError(message: error.localizedDescription)
             }
+            self.searchActivityIndicator.stopAnimating()
         }
     }
 
     // Get weather for user current coordinate
     private func updateCurrentInfo(latitude: Double, longitude: Double) {
+        currentActivityIndicator.startAnimating()
         // Get weather for coordinate
         self.weatherModel.getWeatherForLocation(latitude: latitude, longitude: longitude) { getWeather in
             do {
@@ -155,6 +159,7 @@ class WeatherViewController: UIViewController {
                 // Display alert error
                 self.displayAlertError(message: error.localizedDescription)
             }
+            self.currentActivityIndicator.stopAnimating()
         }
     }
 }
