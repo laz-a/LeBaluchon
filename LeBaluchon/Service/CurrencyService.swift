@@ -51,7 +51,7 @@ class CurrencyService {
 
                 // Throw error if response is an error message
                 if let symbolsError = try? JSONDecoder().decode(CurrencyError.self, from: data) {
-                    print("~~~~~~~~~~~~~~\(symbolsError.error.info)")
+                    print("\(symbolsError.error.info)")
                     callback({ throw AsyncError.json })
                     return
                 }

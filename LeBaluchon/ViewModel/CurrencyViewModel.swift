@@ -12,8 +12,10 @@ class CurrencyViewModel {
     private var currencyService = CurrencyService.shared
 
     // From/to currency default value
-    let defaultFromCurrency = "EUR"
-    let defaultToCurrency = "USD"
+    let defaultFromCurrency = Locale.current.currencyCode ?? "EUR"
+    var defaultToCurrency: String {
+        return defaultFromCurrency == "EUR" ? "USD" : "EUR"
+    }
 
     // Currencies symbols array
     var symbols = [CurrencySymbols.Symbol]()
