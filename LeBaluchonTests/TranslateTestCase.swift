@@ -11,11 +11,11 @@ import XCTest
 final class TranslateTestCase: XCTestCase {
 
     // init CurrencyViewModel with MockURLProtocol
-    private func getTranslateViewModel(_ mock: AnyClass) -> TranslateViewModel {
+    private func getTranslateViewModel(_ mock: AnyClass) -> TranslateModel {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [mock]
         let urlSession = URLSession(configuration: configuration)
-        return TranslateViewModel(session: urlSession)
+        return TranslateModel(session: urlSession)
     }
 
     func testGetLanguagesShouldPostFailedCallbackIfError() async {

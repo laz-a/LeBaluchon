@@ -11,11 +11,11 @@ import XCTest
 final class WeatherTestCase: XCTestCase {
 
     // init CurrencyViewModel with MockURLProtocol
-    private func getWeatherViewModel(_ mock: AnyClass) -> WeatherViewModel {
+    private func getWeatherViewModel(_ mock: AnyClass) -> WeatherModel {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [mock]
         let urlSession = URLSession(configuration: configuration)
-        return WeatherViewModel(session: urlSession)
+        return WeatherModel(session: urlSession)
     }
 
     func testGetWeatherForCoordinateShouldPostFailedCallbackIfError() async {

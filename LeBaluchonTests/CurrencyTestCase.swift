@@ -11,11 +11,11 @@ import XCTest
 final class CurrencyTestCase: XCTestCase {
 
     // init CurrencyViewModel with MockURLProtocol
-    private func getCurrencyViewModel(_ mock: AnyClass) -> CurrencyViewModel {
+    private func getCurrencyViewModel(_ mock: AnyClass) -> CurrencyModel {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [mock]
         let urlSession = URLSession(configuration: configuration)
-        return CurrencyViewModel(session: urlSession)
+        return CurrencyModel(session: urlSession)
     }
 
     func testGetAvailableCurrenciesShouldPostFailedCallbackIfError() async {
