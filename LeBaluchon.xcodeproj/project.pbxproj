@@ -125,10 +125,8 @@
 				6F18C1E52906D02200969459 /* SceneDelegate.swift */,
 				6F18C1F12906D02400969459 /* Info.plist */,
 				6F18C2152906D04400969459 /* Model */,
-				6F740A4B290BF4A600F89AD2 /* ViewModel */,
 				6F18C2142906D03E00969459 /* View */,
 				6F18C2132906D02D00969459 /* Controller */,
-				6F18C21D2906D38400969459 /* Service */,
 				6F2DF1FE2921937200CAB76F /* Constant */,
 				6F40D78229189F4F00C64FF6 /* Extension */,
 			);
@@ -172,10 +170,11 @@
 		6F18C2152906D04400969459 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6F18C2232906D48000969459 /* Currency.swift */,
-				6FB7C8CC290C8B8300B00262 /* Translate.swift */,
-				6FAA8BE12911706D008E6FB1 /* Weather.swift */,
-				6FB7C8D229106D0900B00262 /* AsyncError.swift */,
+				6FB2164B2923C9800037B617 /* Structure */,
+				6F18C21D2906D38400969459 /* Service */,
+				6F18C2252906D4BD00969459 /* CurrencyViewModel.swift */,
+				6FB7C8CE290D5E7B00B00262 /* TranslateViewModel.swift */,
+				6FAA8BDF29116FC7008E6FB1 /* WeatherViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -214,14 +213,15 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		6F740A4B290BF4A600F89AD2 /* ViewModel */ = {
+		6FB2164B2923C9800037B617 /* Structure */ = {
 			isa = PBXGroup;
 			children = (
-				6F18C2252906D4BD00969459 /* CurrencyViewModel.swift */,
-				6FB7C8CE290D5E7B00B00262 /* TranslateViewModel.swift */,
-				6FAA8BDF29116FC7008E6FB1 /* WeatherViewModel.swift */,
+				6F18C2232906D48000969459 /* Currency.swift */,
+				6FB7C8CC290C8B8300B00262 /* Translate.swift */,
+				6FAA8BE12911706D008E6FB1 /* Weather.swift */,
+				6FB7C8D229106D0900B00262 /* AsyncError.swift */,
 			);
-			path = ViewModel;
+			path = Structure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
