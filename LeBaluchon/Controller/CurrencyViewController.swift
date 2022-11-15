@@ -8,7 +8,7 @@
 import UIKit
 
 class CurrencyViewController: UIViewController {
-    private let currencyModel = CurrencyViewModel()
+    private let currencyModel = CurrencyModel()
 
     // Currency code corresponding to selected row PickerView
     private var targetCurrency: String {

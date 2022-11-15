@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-class WeatherViewModel {
+class WeatherModel {
     // Weather service singleton
     private var weatherService = WeatherService.shared
 
@@ -16,8 +16,8 @@ class WeatherViewModel {
     private let geocoder = CLGeocoder()
 
     // Create queue, allow only 1 request at a time
+    private let dispatchSemaphore = DispatchSemaphore(value: 1)
     private let queue = DispatchQueue(label: "weatherService", attributes: .concurrent)
-    private let semaphore = DispatchSemaphore(value: 1)
 
     init() {}
 
@@ -31,7 +31,7 @@ class WeatherViewModel {
         // Add fonction to queue
         queue.async {
             // Wait for completion : signal()
-            self.semaphore.wait()
+            _ = self.dispatchSemaphore.wait(timeout: .distantFuture)
 
             // Get location for coordinate
             self.getLocation(latitude: latitude, longitude: longitude) { getLocation in
@@ -48,13 +48,13 @@ class WeatherViewModel {
                             completionHandler({ throw error })
                         }
                         // Completion signaling to semaphore
-                        self.semaphore.signal()
+                        self.dispatchSemaphore.signal()
                     }
                 } catch {
                     // Throw localization error
                     completionHandler({ throw error })
                     // Completion signaling to semaphore
-                    self.semaphore.signal()
+                    self.dispatchSemaphore.signal()
                 }
             }
         }
@@ -65,7 +65,7 @@ class WeatherViewModel {
         // Add fonction to queue
         queue.async {
             // Wait for completion : signal()
-            self.semaphore.wait()
+            _ = self.dispatchSemaphore.wait(timeout: .distantFuture)
 
             // Get location for user input : city
             self.getLocation(from: location) { getLocation in
@@ -83,13 +83,13 @@ class WeatherViewModel {
                             completionHandler({ throw error })
                         }
                         // Completion signaling to semaphore
-                        self.semaphore.signal()
+                        self.dispatchSemaphore.signal()
                     }
                 } catch {
                     // Throw localization error
                     completionHandler({ throw error })
                     // Completion signaling to semaphore
-                    self.semaphore.signal()
+                    self.dispatchSemaphore.signal()
                 }
             }
         }

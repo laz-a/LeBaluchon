@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TranslateViewModel {
+class TranslateModel {
     // Translate service singleton
     private var translateService = TranslateService.shared
 
