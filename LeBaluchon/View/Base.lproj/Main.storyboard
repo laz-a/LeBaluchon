@@ -273,7 +273,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ElV-RB-MhJ"/>
-                        <color key="backgroundColor" red="0.63137254899999995" green="0.70196078429999997" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.65549276961761271" green="0.76471144488068665" blue="0.90322035186144767" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ElV-RB-MhJ" firstAttribute="bottom" secondItem="2IA-b7-CtX" secondAttribute="bottom" id="9OK-VF-iLp"/>
