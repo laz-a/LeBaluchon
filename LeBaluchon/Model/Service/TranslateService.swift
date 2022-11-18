@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TranslateService {
+final class TranslateService {
     // Define singleton
     static var shared = TranslateService()
     private init() {}

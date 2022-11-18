@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CurrencyService {
+final class CurrencyService {
     // Define singleton
     static var shared = CurrencyService()
     private init() {}

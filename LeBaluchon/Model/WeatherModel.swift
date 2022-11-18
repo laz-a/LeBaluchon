@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-class WeatherModel {
+final class WeatherModel {
     // Weather service singleton
     private var weatherService = WeatherService.shared
 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TranslateViewController: UIViewController {
+final class TranslateViewController: UIViewController {
     private let translateModel = TranslateModel()
 
     @IBOutlet weak var fromLanguageButton: UIButton!

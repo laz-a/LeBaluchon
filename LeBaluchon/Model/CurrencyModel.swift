@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CurrencyModel {
+final class CurrencyModel {
     // Currency service singleton
     private var currencyService = CurrencyService.shared
 

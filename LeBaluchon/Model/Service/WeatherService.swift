@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WeatherService {
+final class WeatherService {
     // Define singleton
     static var shared = WeatherService()
     private init() {}

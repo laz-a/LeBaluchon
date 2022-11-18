@@ -8,7 +8,7 @@
 import UIKit
 
 // Custom StackView
-class DailyWeatherStackView: UIStackView {
+final class DailyWeatherStackView: UIStackView {
 
     init(day: Date, temp: Double, icon: String) {
         super.init(frame: CGRect.zero)
